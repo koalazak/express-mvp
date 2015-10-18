@@ -1,14 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
+var home = require("../controllers/home.js")();
+var about = require("../controllers/about.js")();
+
 
 router.get('/', function(req, res, next) {
-  res.render('home', { title: 'Home' });
+
+  home.show(req, res, next);
+
 });
 
 
 router.get('/about', function(req, res, next) {
-  res.render('about', { title: 'About' });
+  
+  about.show(req, res, next);
+
 });
 
 
