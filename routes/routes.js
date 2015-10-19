@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var db=require("../app.js").db;
 
-var home = require("../controllers/home.js")();
-var about = require("../controllers/about.js")();
+var home = require("../controllers/home.js")(db);
+var about = require("../controllers/about.js")(db);
 
 
 router.get('/', function(req, res, next) {

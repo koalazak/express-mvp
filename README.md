@@ -5,9 +5,9 @@ When I start a development of a "Minimum Viable Product" orientend to web using 
 - Add MongoDB query string
 - Structure directories Routes, Controllers, Views and Libs
 - Add Bootstrap, jquery, Angular, etc
-- Install some security modules
+- Install some security modules (helmet for Headers)
 - Add a basic bootstrap template with header, footer, menubar, etc
-- Log-in for users
+- Log-in for users with Passportjs
 - etc...
 
 So I decide to create a repo with all this things ready to go.
