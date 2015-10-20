@@ -2,7 +2,47 @@
 
 <div class="container">
     <h1><%= title %></h1>
-    <p>...</p>
+    <hr>
+    
+    <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-body">
+			<h3 class="thin text-center">Get in touch</h3>
+			<p>Have a question, comment, or just want to say hi? Drop us a line!</p>
+			<hr>
+    <form name="contact-form" action="/contact" method="post">
+		<div class="row">
+			<div class="col-sm-4">
+				<input class="form-control" type="text" name="contact-name" placeholder="Name" required>
+			</div>
+			<div class="col-sm-4">
+				<input class="form-control" type="email" name="contact-email" placeholder="Email" required>
+			</div>
+			<div class="col-sm-4">
+				<input class="form-control" type="text" name="contact-phone" placeholder="Phone">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-sm-12">
+				<textarea name="contact-message" placeholder="Type your message here..." class="form-control" rows="9" required></textarea>
+			</div>
+		</div>
+		<br>
+		<div class="">
+			<div class="col-sm-6">
+				<label class="checkbox"><input name="contact-newsletter" type="checkbox"> Sign up for newsletter</label>
+			</div>
+			<div class="col-sm-6 text-right">
+				<input class="btn btn-action btn-primary" type="submit" value="Send message">
+			</div>
+		</div>
+	</form>
+
+	</div>
+	</div>
+	</div>
+
 
 </div>
 

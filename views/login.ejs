@@ -2,7 +2,41 @@
 
 <div class="container">
     <h1><%= title %></h1>
-    <p>...</p>
+    <hr>
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<h3 class="thin text-center">Sign in to your account</h3>
+				<p class="text-center text-muted">If you dont have an account, <a href="/register">create an account</a> now. </p>
+				<hr>
+				
+				<form action="/login" method="post">
+					<div class="top-margin">
+						<label>Username/Email <span class="text-danger">*</span></label>
+						<input type="text" name="login_username" id="login_username" class="form-control" required>
+					</div>
+					<div class="top-margin">
+						<label>Password <span class="text-danger">*</span></label>
+						<input type="password" name="login_password" id="login_passwword" class="form-control" required>
+					</div>
+
+					<hr>
+
+					<div class="row">
+						<div class="col-lg-8">
+							<b><a href="/recover-accout">Forgot password?</a></b>
+						</div>
+
+						<div class="col-lg-4 text-right">
+							<button class="btn btn-action btn-primary" type="submit">Log in</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
 
 </div>
 

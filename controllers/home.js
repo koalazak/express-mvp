@@ -18,7 +18,13 @@ function Home(db){
 
 		registerForm: function(req, res, next){
 		
-			  res.render('register', { title: 'Sign up' });
+			  res.render('register', { title: 'Registration' });
+
+		},
+
+		forgotForm: function(req, res, next){
+		
+			  res.render('forgot', { title: 'Forgot your password?' });
 
 		}
 

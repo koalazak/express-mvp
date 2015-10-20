@@ -26,6 +26,12 @@ router.get('/contact', function(req, res, next) {
 
 });
 
+router.get('/legal', function(req, res, next) {
+  
+  about.legal(req, res, next);
+
+});
+
 router.get('/login', function(req, res, next) {
   
   home.loginForm(req, res, next);
@@ -35,6 +41,12 @@ router.get('/login', function(req, res, next) {
 router.get('/register', function(req, res, next) {
   
   home.registerForm(req, res, next);
+
+});
+
+router.get('/recover-accout', function(req, res, next) {
+  
+  home.forgotForm(req, res, next);
 
 });
 

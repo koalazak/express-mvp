@@ -1,0 +1,40 @@
+<% include header.ejs %>
+
+<div class="container">
+    <h1><%= title %></h1>
+    <hr>
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<h3 class="thin text-center">Reset password</h3>
+				<p class="text-center text-muted">A confirmation link will be sent to your email. </p>
+				<hr>
+				
+				<form action="/recover-account" method="post">
+					<div class="top-margin">
+						<label>Email <span class="text-danger">*</span></label>
+						<input type="text" name="forgot_email" id="forgot_email" class="form-control" required>
+					</div>
+
+					<hr>
+					<div class="row">
+						<div class="col-lg-8">
+							<b>Changed your mind? Back to <a href="/login">sign in</a> form</b>
+						</div>
+						<div class="col-lg-8">
+							<b>Don't have an account? <a href="/register">Register</a> one now</b>
+						</div>
+
+						<div class="col-lg-4 text-right">
+							<button class="btn btn-action btn-primary" type="submit">Reset password</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<% include footer.ejs %>

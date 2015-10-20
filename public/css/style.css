@@ -2,6 +2,12 @@ html, body {
     height:100%;
 }
 
+h1 {
+	font-family: "Open sans", Helvetica, Arial;
+	font-weight: 300;
+	font-size: 36px;
+}
+
 .page-body{
 	padding-top: 64px;
 	position: relative;
