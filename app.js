@@ -4,9 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongojs = require('mongojs');
-
-var db = mongojs('mvp', ['users']);
+var db = require("./config-db.js").db;
 
 var routes = require('./routes/routes');
 
@@ -14,7 +12,6 @@ var app = express();
 
 app.use(function(req,res,next){
     req.db = db;
-    req.db.events=db.collection('users');
     next();
 });
 exports.db=db;
@@ -42,10 +39,11 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
+var dev = process.env.NODE_ENV !== 'production';
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+if (dev) {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {

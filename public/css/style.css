@@ -1,8 +1,41 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html, body {
+    height:100%;
 }
 
-a {
-  color: #00B7FF;
+.page-body{
+	padding-top: 64px;
+	position: relative;
+    min-height:100%;
+}
+
+.footer1 {
+    background: #232323;
+    padding: 30px 0 0 0;
+    font-size: 12px;
+    color: #999;
+}
+
+.footer2 {
+    background: #191919;
+    padding: 15px 0;
+    color: #777;
+    font-size: 12px;
+}
+
+.footer1 .widget-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #ccc;
+    margin: 0 0 20px;
+}
+
+.footer2 a:hover {
+    color: #fff;
+}
+.footer2 a {
+    color: #aaa;
+}
+
+.footer1 a {
+    color: #ccc;
 }
