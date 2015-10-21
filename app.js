@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var db = require("./config-db.js").db;
 
-var routes = require('./routes/routes');
+var indexRoutes = require('./routes/index');
 
 var app = express();
 
@@ -14,7 +14,7 @@ app.use(function(req,res,next){
     req.db = db;
     next();
 });
-exports.db=db;
+module.exports.db=db;
 
 
 // view engine setup
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', indexRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
