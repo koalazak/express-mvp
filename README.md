@@ -15,5 +15,5 @@ When I start a development of a "Minimum Viable Product" orientend to web using 
 
 So I decide to create a repo with all this things ready to go.
 
-(working in progress..)
+(working in progress...)
 
