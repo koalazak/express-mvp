@@ -1,6 +1,9 @@
+var validator = require('validator');
+var paramParser = require("../lib/param-sanitizer.js");
+var msgs = require("../lib/msgs.js");
+var userModel = require("../models/users.js")();
 
-
-function Home(db){
+function Home(){
 	
 	return {
 		
@@ -60,6 +63,75 @@ function Home(db){
 				'action' : 'renderRegister'
 			}
 			cb(pto);
+
+		},
+
+		registerUser: function(params, cb){
+
+			var pto = {
+				'msgs' :[],
+				'action' : 'OK'
+			}
+
+			var userAlias = paramParser.expect(params.bodyPost.userAlias,"string","").trim();
+			var userEmail = paramParser.expect(params.bodyPost.userEmail,"string","").trim();
+			if(!validator.isEmail(userEmail)) userEmail="";
+			var userPassword1 = paramParser.expect(params.bodyPost.userPassword1,"string","");
+			var userPassword2 = paramParser.expect(params.bodyPost.userPassword2,"string","");
+
+			if(!userAlias){
+				pto.msgs.push(msgs.error("Please chose an Alias"));
+				pto.action="FAIL";
+			}
+			if(userAlias.length < 3){
+				pto.msgs.push(msgs.error("Your Alias must have more than 3 characters"));
+				pto.action="FAIL";
+			}
+			if(!userEmail){
+				pto.msgs.push(msgs.error("Please enter a email address."));
+				pto.action="FAIL";
+			}
+			if(userPassword1 != userPassword2){
+				pto.msgs.push(msgs.error("The passwords must be equals"));
+				pto.action="FAIL";
+
+			}
+			if(userPassword1.length<8){
+				pto.msgs.push(msgs.error("Your passwords must have more than 3 characters"));
+				pto.action="FAIL";
+
+			}
+
+			if(pto.action=="FAIL"){
+				cb(pto);
+				return;
+			}else{
+
+				userModel.existLocal(userEmail, function(uData){
+
+					if(uData){
+						pto.action="FAIL";
+						pto.msgs.push(msgs.error("Please, choose another email address."));
+						cb(pto);
+					}else{
+
+						userModel.addLocal( {userAlias: userAlias,
+											 userEmail: userEmail,
+											 userPassword: userPassword1
+											}, function(err,uData){
+							if(err){
+								pto.action="FAIL";
+								pto.msgs.push(msgs.error("Unkwnon error in registration. Please contact the Adminsitrator."));
+								cb(pto);
+							}else{
+								pto.msgs.push(msgs.ok("Account created successfully. Please check your email to activate your Account."));
+								cb(pto);
+							}	
+						});
+					}
+
+				})
+			}
 
 		},
 

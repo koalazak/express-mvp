@@ -53,6 +53,16 @@ router.get('/register', function(req, res, next) {
 
 });
 
+router.post('/register', function(req, res, next) {
+
+	var params={ bodyPost: req.body }
+
+	indexCtrl.registerUser(params, function(pto){
+		res.send(pto);
+	});
+
+});
+
 router.get('/recover-accout', function(req, res, next) {
   
 	indexCtrl.forgotForm({}, function(pto){

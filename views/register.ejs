@@ -5,35 +5,35 @@
     <hr>
 	<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 		<div class="panel panel-default">
-			<div class="panel-body">
+			<div id="headsection" class="panel-body">
 				<h3 class="thin text-center">Register a new account</h3>
 				<p class="text-center text-muted">Already have an account? <a href="/login">Log in here.</a></p>
 				<hr>
 
-				<form action="/register" method="post">
+				<form id="register" action="/register" method="post">
 					<div class="top-margin">
-						<label>Name/Alias <span class="text-danger">*</span></label>
-						<input type="text" name="regiter-name" id="register-name" class="form-control" required>
+						<label>First name <span class="text-danger">*</span></label>
+						<input type="text" name="userAlias" id="userAlias" class="form-control" required>
 					</div>
 
 					<div class="top-margin">
 						<label>Email Address <span class="text-danger">*</span></label>
-						<input type="email" name="regiter-email" id="register-email" class="form-control" required>
+						<input type="email" name="userEmail" id="userEmail" class="form-control" required>
 					</div>
 
 					<div class="row top-margin">
 						<div class="col-sm-6">
 							<label>Password <span class="text-danger">*</span></label>
-							<input type="password" name="regiter-password1" id="register-password1" class="form-control" required>
+							<input type="password" name="userPassword1" id="userPassword1" class="form-control" required>
 						</div>
 						<div class="col-sm-6">
 							<label>Confirm Password <span class="text-danger">*</span></label>
-							<input type="password" name="regiter-password2" id="register-password2" class="form-control" required>
+							<input type="password" name="userPassword2" id="userPassword2" class="form-control" required>
 						</div>
 					</div>
-
 					<hr>
-
+					<div id="registerError" style="display:none;" class="alert alert-danger">
+					</div>
 					<div>
 						<div class="col-lg-8">
 							<label class="checkbox">
@@ -46,11 +46,11 @@
 						</div>
 					</div>
 				</form>
+				<div id="registerOK" style="display:none;" class="alert alert-success">
+				</div>
 			</div>
 		</div>
-
 	</div>
-
 
 </div>
 
