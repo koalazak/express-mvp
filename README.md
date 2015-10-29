@@ -8,6 +8,7 @@ When I start a development of a "Minimum Viable Product" orientend to web using 
 - Install some security modules (helmet for Headers)
 - Add a basic bootstrap template with header, footer, menubar, etc
 - Log-in for users with Passportjs
+- i18n
 - Register
 - Forgot Password
 - Contact form
