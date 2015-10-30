@@ -3,6 +3,11 @@ var paramParser = require("../lib/param-sanitizer.js");
 var msgs = require("../lib/msgs.js");
 var userModel = require("../models/users.js")();
 
+var registerConfirmation=require("../config.js").registerConfirmation;
+var mailConf=require("../config.js").emailData;
+var Emails = require("../lib/emails.js")(mailConf);
+
+
 function Home(){
 	
 	return {
@@ -124,7 +129,18 @@ function Home(){
 								pto.msgs.push(msgs.error("Unkwnon error in registration. Please contact the Adminsitrator."));
 								cb(pto);
 							}else{
-								pto.msgs.push(msgs.ok("Account created successfully. Please check your email to activate your Account."));
+
+								Emails.sendRegister(userEmail, {
+																registerConfirmation: registerConfirmation, 
+																name: userAlias,
+																activationHash: uData.activationHash,
+																baseURL: params.baseURL,
+																account: userEmail 
+																});
+								
+								var okMSG="Account created successfully.";
+								if(registerConfirmation) okMSG=okMSG+"Please check your email to activate your Account.";
+								pto.msgs.push(msgs.ok(okMSG));
 								cb(pto);
 							}	
 						});

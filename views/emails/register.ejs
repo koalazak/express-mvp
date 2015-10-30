@@ -1,0 +1,18 @@
+Hi <strong><%=name%></strong>,<br><br>
+
+Welcome to <%=proyectName%>!<br>
+
+<% if(registerConfirmation){ %>
+
+To activate your account, please follow this link:<br>
+<a href="<%=baseURL%>/activation/?user=<%=account%>&acode=<%=activationHash%>"><%=baseURL%>/activation/?user=<%=account%>&acode=<%=activationHash%></a>
+<br><br>
+<% } %>
+
+Thanks for your registration.<br><br>
+
+Best regards,<br><br>
+
+<%=proyectName%> Team.
+
+

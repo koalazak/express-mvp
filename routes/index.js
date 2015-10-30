@@ -55,7 +55,8 @@ router.get('/register', function(req, res, next) {
 
 router.post('/register', function(req, res, next) {
 
-	var params={ bodyPost: req.body }
+	var baseURL= req.protocol + '://' + req.get('host');
+	var params={ bodyPost: req.body, baseURL: baseURL};
 
 	indexCtrl.registerUser(params, function(pto){
 		res.send(pto);

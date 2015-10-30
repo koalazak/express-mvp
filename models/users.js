@@ -2,7 +2,7 @@
 
 function Users(){
 
-	var db=require("../config-db").db;
+	var db=require("../config").db;
 	
 	return {
 
