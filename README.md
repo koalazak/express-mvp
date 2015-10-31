@@ -9,7 +9,7 @@ When I start a development of a "Minimum Viable Product" orientend to web using 
 - Add a basic bootstrap template with header, footer, menubar, etc
 - Log-in for users with Passportjs
 - i18n
-- System e-mails
+- Core e-mails
 - Register
 - Register Confirmation
 - Forgot Password
