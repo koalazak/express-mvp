@@ -139,7 +139,11 @@ function Home(){
 																});
 								
 								var okMSG="Account created successfully.";
-								if(registerConfirmation) okMSG=okMSG+"Please check your email to activate your Account.";
+								if(registerConfirmation){
+									okMSG=okMSG+" Please check your email to activate your Account.";
+								}else{
+									okMSG=okMSG+" Please login.";
+								} 
 								pto.msgs.push(msgs.ok(okMSG));
 								cb(pto);
 							}	
