@@ -80,11 +80,11 @@ function Home(){
 			var userPassword2 = paramParser.expect(params.bodyPost.userPassword2,"string","");
 
 			if(!userAlias){
-				pto.msgs.push(msgs.error("Please chose an Alias"));
+				pto.msgs.push(msgs.error("Please chose an Alias."));
 				pto.action="FAIL";
 			}
 			if(userAlias.length < 3){
-				pto.msgs.push(msgs.error("Your Alias must have more than 3 characters"));
+				pto.msgs.push(msgs.error("Your Alias must have more than 3 characters."));
 				pto.action="FAIL";
 			}
 			if(!userEmail){
@@ -92,12 +92,12 @@ function Home(){
 				pto.action="FAIL";
 			}
 			if(userPassword1 != userPassword2){
-				pto.msgs.push(msgs.error("The passwords must be equals"));
+				pto.msgs.push(msgs.error("The passwords must be equals."));
 				pto.action="FAIL";
 
 			}
 			if(userPassword1.length<8){
-				pto.msgs.push(msgs.error("Your passwords must have more than 3 characters"));
+				pto.msgs.push(msgs.error("Your passwords must have more than 3 characters."));
 				pto.action="FAIL";
 
 			}
