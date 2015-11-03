@@ -40,7 +40,7 @@ function Users(){
 			db.users.findOne({username: username}, function(e, d){
 				
 				if(e){
-					 throw new Error('my silly error')
+					 throw new Error('Error cheking user existence.')
 					 return;
 				}else{
 					cb(d);
