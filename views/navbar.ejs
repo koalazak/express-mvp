@@ -6,14 +6,21 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-         <li><a href="/about">About</a></li>
-         <li><a href="/contact">Contact</a></li>
+         <li><a href="/about"><%=texts.ABOUT%></a></li>
+         <li><a href="/contact"><%=texts.CONTACT%></a></li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      <form class="navbar-form navbar-left" role="search">
-        <a href="/login" class="btn btn-default">Sign in</a> 
-        <a href="/register" class="btn btn-primary">Sign up</a>
-      </form>
+        <li>
+        <form class="navbar-form navbar-left" role="search">
+          <a href="/login" class="btn btn-default"><%=texts.SIGN_IN%></a> 
+          <a href="/register" class="btn btn-primary"><%=texts.SIGN_UP%></a>   
+          <select class="btn btn-default" id="clang" onchange="location.href='/?clang='+$('#clang').val();">
+            <option value="en" <%=(lang=='en'?'selected="selected"':'')%> >English</option>
+            <option value="es" <%=(lang=='es'?'selected="selected"':'')%> >Español</option>
+          </select>
+        </form>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->

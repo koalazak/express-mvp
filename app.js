@@ -1,10 +1,14 @@
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var db = require("./config.js").db;
+var i18n = require("i18n-express");
+var geolang = require("geolang-express");
+
 
 var indexRoutes = require('./routes/index');
 
@@ -28,6 +32,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: require("./config.js").sessionSecret,
+  saveUninitialized: true,
+  resave: true
+}));
+
+app.use(geolang({
+  siteLangs: ['en','es']
+}));
+
+app.use(i18n({
+  translationsPath: path.join(__dirname, 'i18n'),
+  siteLangs: ["en","es"]
+}));
 
 app.use('/', indexRoutes);
 

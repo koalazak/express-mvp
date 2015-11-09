@@ -6,28 +6,28 @@
 	<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 		<div class="panel panel-default">
 			<div id="headsection" class="panel-body">
-				<h3 class="thin text-center">Register a new account</h3>
-				<p class="text-center text-muted">Already have an account? <a href="/login">Log in here.</a></p>
+				<h3 class="thin text-center"><%=texts.REGISTER_A_NEW_ACCOUNT%></h3>
+				<p class="text-center text-muted"><%=texts.ALREADY_HAVE_AN_ACCOUNT%> <a href="/login"><%=texts.LOGIN_HERE%>.</a></p>
 				<hr>
 
 				<form id="register" action="/register" method="post">
 					<div class="top-margin">
-						<label>First name <span class="text-danger">*</span></label>
+						<label><%=texts.FIRST_NAME%> <span class="text-danger">*</span></label>
 						<input type="text" name="userAlias" id="userAlias" class="form-control" required>
 					</div>
 
 					<div class="top-margin">
-						<label>Email Address <span class="text-danger">*</span></label>
+						<label><%=texts.EMAIL_ADDRESS%> <span class="text-danger">*</span></label>
 						<input type="email" name="userEmail" id="userEmail" class="form-control" required>
 					</div>
 
 					<div class="row top-margin">
 						<div class="col-sm-6">
-							<label>Password <span class="text-danger">*</span></label>
+							<label><%=texts.PASSWORD%> <span class="text-danger">*</span></label>
 							<input type="password" name="userPassword1" id="userPassword1" class="form-control" required>
 						</div>
 						<div class="col-sm-6">
-							<label>Confirm Password <span class="text-danger">*</span></label>
+							<label><%=texts.CONFIRM_PASSWORD%> <span class="text-danger">*</span></label>
 							<input type="password" name="userPassword2" id="userPassword2" class="form-control" required>
 						</div>
 					</div>
@@ -38,11 +38,11 @@
 						<div class="col-lg-8">
 							<label class="checkbox">
 								<input type="checkbox" name="legals" required> 
-								I've read the <a href="/legal">Terms and Conditions</a>
+								<%=texts.IVE_READ_THE%> <a href="/legal"><%=texts.TERMS_AND_CONDITIONS%></a>
 							</label>                        
 						</div>
 						<div class="col-lg-4 text-right">
-							<button class="btn btn-primary" type="submit">Register</button>
+							<button class="btn btn-primary" type="submit"><%=texts.REGISTER%></button>
 						</div>
 					</div>
 				</form>

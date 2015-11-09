@@ -1,14 +1,14 @@
 <% include header.ejs %>
 
 <div class="container">
-    <h1><%= title %></h1>
+    <h1><%=texts.CONTACT_US%></h1>
     <hr>
     
     <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
 		<div class="panel panel-default">
 			<div class="panel-body">
-			<h3 class="thin text-center">Get in touch</h3>
-			<p>Have a question, comment, or just want to say hi? Drop us a line!</p>
+			<h3 class="thin text-center"><%=texts.GET_IN_TOUCH%></h3>
+			<p><%=texts.CONTACT_TEXT%></p>
 			<hr>
     <form name="contact-form" action="/contact" method="post">
 		<div class="row">
@@ -31,10 +31,10 @@
 		<br>
 		<div class="">
 			<div class="col-sm-6">
-				<label class="checkbox"><input name="contact-newsletter" type="checkbox"> Sign up for newsletter</label>
+				<label class="checkbox"><input name="contact-newsletter" type="checkbox"><%=texts.SIGNUP_NEWSLETTER%></label>
 			</div>
 			<div class="col-sm-6 text-right">
-				<input class="btn btn-action btn-primary" type="submit" value="Send message">
+				<input class="btn btn-action btn-primary" type="submit" value="<%=texts.SEND_MESSAGE%>">
 			</div>
 		</div>
 	</form>

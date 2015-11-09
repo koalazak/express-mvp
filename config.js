@@ -14,6 +14,7 @@ if(dev){
 	db.users=db.collection('users');
 }
 
+module.exports.sessionSecret="changeme";
 
 module.exports.projectName="MVP";
 
