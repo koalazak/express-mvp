@@ -47,6 +47,15 @@ app.use(i18n({
   siteLangs: ["en","es"]
 }));
 
+
+//some locals
+app.use(function(req, res, next) {
+  var registerEnabled = require("./config.js").registerEnabled;
+  req.app.locals.registerEnabled=registerEnabled;
+  next();
+});
+
+
 app.use('/', indexRoutes);
 
 // catch 404 and forward to error handler

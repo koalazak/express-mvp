@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db=require("../app.js").db;
+var registerEnabled=require("../config.js").registerEnabled;
 
 var indexCtrl = require("../controllers/index.js")();
 
@@ -47,20 +48,28 @@ router.get('/login', function(req, res, next) {
 
 router.get('/register', function(req, res, next) {
 
-	indexCtrl.registerForm({}, function(pto){
-		res.render('register', pto.viewOpts);
-	});
+	if(registerEnabled){
+		indexCtrl.registerForm({}, function(pto){
+			res.render('register', pto.viewOpts);
+		});
+	}else{
+		next();
+	}
 
 });
 
 router.post('/register', function(req, res, next) {
 
-	var baseURL= req.protocol + '://' + req.get('host');
-	var params={ bodyPost: req.body, baseURL: baseURL};
-
-	indexCtrl.registerUser(params, function(pto){
-		res.send(pto);
-	});
+	if(registerEnabled){
+		var baseURL= req.protocol + '://' + req.get('host');
+		var params={ bodyPost: req.body, baseURL: baseURL};
+	
+		indexCtrl.registerUser(params, function(pto){
+			res.send(pto);
+		});
+	}else{
+		next();
+	}
 
 });
 

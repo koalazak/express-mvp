@@ -25,6 +25,8 @@ module.exports.emailData={
 	proyectName: module.exports.projectName
 }
 
+module.exports.registerEnabled=true;
+
 module.exports.registerConfirmation=true;
 module.exports.db=db;
 module.exports.env=dev;

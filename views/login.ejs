@@ -7,7 +7,7 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<h3 class="thin text-center"><%=texts.SIGN_IN_TO_YOUR_ACCOUNT%></h3>
-				<p class="text-center text-muted"><%=texts.IF_YOU_DONT_HAVE_ACCOUNT%>, <a href="/register"><%=texts.CREATE_AN_ACCOUNT%></a> <%=texts.NOW%>. </p>
+				<% if (registerEnabled) { %><p class="text-center text-muted"><%=texts.IF_YOU_DONT_HAVE_ACCOUNT%>, <a href="/register"><%=texts.CREATE_AN_ACCOUNT%></a> <%=texts.NOW%>. </p><% } %>
 				<hr>
 				
 				<form action="/login" method="post">

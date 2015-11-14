@@ -10,7 +10,9 @@
 		</p>
 
 	   <a href="/login" class="btn btn-default"><%=texts.SIGN_IN%></a>  
-	   <a href="/register" type="submit" class="btn btn-primary"><%=texts.SIGN_UP%></a>
+	   <% if (registerEnabled) { %>
+	   	<a href="/register" type="submit" class="btn btn-primary"><%=texts.SIGN_UP%></a>
+	   <%}%>
 
 	</div>
 
