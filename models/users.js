@@ -1,4 +1,5 @@
-
+var crypto = require('crypto');
+var uuid = require('uuid');
 
 function Users(){
 
@@ -9,8 +10,6 @@ function Users(){
 
 		addLocal : function (data, cb){
 
-			var crypto = require('crypto');
-			var uuid = require('uuid');
 			var encPass = crypto.createHash('sha256').update(data.userPassword).digest('hex');
 			var activationHash = crypto.createHash('sha256').update("69"+data.userEmail+uuid.v4()).digest('hex');
 			
@@ -50,6 +49,25 @@ function Users(){
 				}else{
 					cb(d);
 				}
+
+			})
+
+		},
+		
+		auth: function (username, password, cb){
+			
+			var encPass = crypto.createHash('sha256').update(password).digest('hex');
+			//TODO: check account status
+			db.users.findOne({username: username, password: encPass}, function(e, d){
+				cb(e,d);
+			})
+
+		},
+		
+		findById: function (id, cb){
+			db.users.findOne({_id: db.ObjectId(id)}, function(e, d){
+				
+				cb(e,d);
 
 			})
 

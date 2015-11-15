@@ -73,7 +73,7 @@ router.post('/register', function(req, res, next) {
 
 });
 
-router.get('/recover-accout', function(req, res, next) {
+router.get('/recover-account', function(req, res, next) {
   
 	indexCtrl.forgotForm({}, function(pto){
 		res.render('forgot', pto.viewOpts);

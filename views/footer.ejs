@@ -48,9 +48,11 @@
 							<p class="simplenav">
 								<a href="/">Home</a> | 
 								<a href="/about"><%=texts.ABOUT%></a> |
-								<a href="/contact"><%=texts.CONTACT%></a> |
-								<a href="/login"><%=texts.SIGN_IN%></a> 
-								<% if (registerEnabled) { %>|<b><a href="/register"><%=texts.SIGN_UP%></a></b><% } %>
+								<a href="/contact"><%=texts.CONTACT%></a>
+								<% if(!loggedUser) { %> |
+									<a href="/login"><%=texts.SIGN_IN%></a> 
+									<% if (registerEnabled) { %>|<b><a href="/register"><%=texts.SIGN_UP%></a></b><% } %>
+								<% } %>
 							</p>
 						</div>
 					</div>
