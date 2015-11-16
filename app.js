@@ -9,6 +9,7 @@ var db = require("./config.js").db;
 var i18n = require("i18n-express");
 var geolang = require("geolang-express");
 var passport = require('passport');
+var helmet = require('helmet');
 var userModel = require("./models/users.js")();
 var flash = require('connect-flash');
 
@@ -53,6 +54,9 @@ app.use(i18n({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+//TODO: tune
+app.use(helmet());
 
 //default locals
 app.use(function(req, res, next) {
