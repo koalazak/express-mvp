@@ -7,12 +7,13 @@ When I start a development of a "Minimum Viable Product" orientend to web using 
 - [x] Add Bootstrap, jquery, Angular, etc
 - [ ] Install some security modules (helmet for Headers)
 - [x] Add a basic bootstrap template with header, footer, menubar, etc
-- [ ] Log-in for users with Passportjs
+- [x] Log-in for local users with Passportjs
+- [ ] Log-in for facebook users with Passportjs
 - [x] i18n
 - [x] Geoip Language
 - [x] Core e-mails
-- [x] Register
-- [ ] Register Confirmation
+- [x] Local Register
+- [ ] Local Register Confirmation enable/disable
 - [ ] Forgot Password
 - [ ] Contact form
 - [ ] etc...

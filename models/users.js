@@ -1,5 +1,6 @@
 var crypto = require('crypto');
 var uuid = require('uuid');
+var LocalStrategy = require('passport-local').Strategy;
 
 function Users(){
 
@@ -57,8 +58,8 @@ function Users(){
 		auth: function (username, password, cb){
 			
 			var encPass = crypto.createHash('sha256').update(password).digest('hex');
-			//TODO: check account status
-			db.users.findOne({username: username, password: encPass}, function(e, d){
+			
+			db.users.findOne({username: username, password: encPass, enable: true}, function(e, d){
 				cb(e,d);
 			})
 
@@ -71,8 +72,38 @@ function Users(){
 
 			})
 
-		}
+		},
 
+		initializePassport : function (passport){
+
+			var _this=this;
+
+			passport.serializeUser(function(user, done) {
+			  done(null, user._id);
+			});
+
+			passport.deserializeUser(function(id, done) {
+			  _this.findById(id, function(err, user) {
+			    done(err, user);
+			  });
+			});
+
+			passport.use(new LocalStrategy({
+			    usernameField: 'login_username',
+			    passwordField: 'login_password'
+			  },
+			  function(username, password, done) {
+			    _this.auth(username, password, function(err, user) {
+			      if (err) { return done(err); }
+			      if (!user) {
+			        return done(null, false, { message: 'Incorrect password/username.' });
+			      }
+			      return done(null, user);
+			    });
+			  }
+			));
+
+		}
 	}
 
 }

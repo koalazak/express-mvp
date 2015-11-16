@@ -14,6 +14,8 @@
     "express": "~4.13.1",
     "express-session": "^1.12.1",
     "geolang-express": "*",
+    "geoip-lite": "*",
+    "country-data":"*",
     "i18n-express": "^1.0.0",
     "mongojs": "*",
     "morgan": "~1.6.1",

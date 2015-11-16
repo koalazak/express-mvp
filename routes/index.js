@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var db=require("../app.js").db;
 var registerEnabled=require("../config.js").registerEnabled;
+var passport = require('passport');
+
 
 var indexCtrl = require("../controllers/index.js")();
 
@@ -39,12 +41,29 @@ router.get('/legal', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  
 	indexCtrl.loginForm({}, function(pto){
+		pto.viewOpts.loginError=req.flash("error");
+		pto.viewOpts.loginusername=req.flash("loginusername");
 		res.render('login', pto.viewOpts);
 	});
 
 });
+
+
+router.post('/login',function(req, res, next) {
+  
+  req.flash("loginusername",req.body.login_username || "");
+
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })(req, res, next);
+});
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
 
 router.get('/register', function(req, res, next) {
 
@@ -79,6 +98,26 @@ router.get('/recover-account', function(req, res, next) {
 		res.render('forgot', pto.viewOpts);
 	});
 
+});
+
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/')
+}
+
+
+// Allow public routes
+router.all('*', function(req,res,next){
+  if (req.path === '/' ||
+      req.path === '/login' ||
+      req.path === '/contact' ||
+      req.path === '/about' ||
+      req.path === '/recover-account' ||
+      req.path === '/legal' ||
+      req.path === '/register') {
+    next();
+  } else ensureAuthenticated(req,res,next);
 });
 
 

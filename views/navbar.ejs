@@ -18,6 +18,8 @@
 	          <% if (registerEnabled) { %>
 	          <a href="/register" class="btn btn-primary"><%=texts.SIGN_UP%></a>  
 	          <% } %> 
+          <% }else{ %>
+            <a href="/logout" class="btn btn-default"><%=texts.LOGOUT%></a> 
           <% } %>
           <select class="btn btn-default" id="clang" onchange="location.href='/?clang='+$('#clang').val();">
             <option value="en" <%=(lang=='en'?'selected="selected"':'')%> >English</option>

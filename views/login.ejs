@@ -13,7 +13,7 @@
 				<form action="/login" method="post">
 					<div class="top-margin">
 						<label><%=texts.USERNAME_EMAIL%> <span class="text-danger">*</span></label>
-						<input type="text" name="login_username" id="login_username" class="form-control" required>
+						<input type="text" name="login_username" id="login_username" class="form-control" value="<%=loginusername.pop();%>" required autofocus>
 					</div>
 					<div class="top-margin">
 						<label><%=texts.PASSWORD%> <span class="text-danger">*</span></label>
@@ -21,6 +21,11 @@
 					</div>
 
 					<hr>
+					<% if(loginError.length){ %>
+						<div id="registerError" class="alert alert-danger">
+						<%=loginError.pop();%>
+						</div>
+					<% } %>
 
 					<div class="row">
 						<div class="col-lg-8">
