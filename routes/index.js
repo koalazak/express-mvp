@@ -59,6 +59,23 @@ router.post('/login',function(req, res, next) {
                                    failureFlash: true })(req, res, next);
 });
 
+router.get('/auth/facebook', function(req, res, next) {
+
+	passport.authenticate('facebook' , { scope: ['read_stream', 'publish_actions'] })(req, res, next);
+
+});
+
+router.get('/auth/facebook/callback', function(req, res, next) {
+
+ 	passport.authenticate('facebook', 
+					{   successRedirect: '/',
+						failureRedirect: '/login',
+						failureFlash: true
+					})(req, res, next);
+
+});
+
+
 router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
@@ -100,6 +117,7 @@ router.get('/recover-account', function(req, res, next) {
 
 });
 
+                                     									
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }

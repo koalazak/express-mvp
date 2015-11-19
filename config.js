@@ -14,6 +14,11 @@ if(dev){
 	db.users=db.collection('users');
 }
 
+module.exports.facebookLoginEnabled=true;
+module.exports.FACEBOOK_APP_ID="";
+module.exports.FACEBOOK_APP_SECRET="";
+module.exports.FACEBOOK_CALLBACK_DOMAIN="";
+
 module.exports.sessionSecret="changeme";
 
 module.exports.projectName="MVP";
