@@ -8,6 +8,7 @@ When I start a development of a "Minimum Viable Product" orientend to web using 
 - [x] Install some security modules (helmet for Headers)
 - [x] Add a basic bootstrap template with header, footer, menubar, etc
 - [x] Log-in for local users with Passportjs
+- [x] enable/disable facebook login and register
 - [x] Log-in for facebook users with Passportjs
 - [x] i18n
 - [x] Geoip Language
