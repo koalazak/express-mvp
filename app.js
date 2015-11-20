@@ -60,8 +60,8 @@ app.use(helmet());
 
 //default locals
 app.use(function(req, res, next) {
-  var registerEnabled = require("./config.js").registerEnabled;
-  req.app.locals.registerEnabled=registerEnabled;
+  req.app.locals.registerEnabled=registerEnabled = require("./config.js").registerEnabled;
+  req.app.locals.facebookLoginEnabled=require("./config.js").facebookLoginEnabled;
   req.app.locals.loggedUser = req.user;
   next();
 });

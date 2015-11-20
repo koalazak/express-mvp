@@ -8,7 +8,15 @@
 			<div class="panel-body">
 				<h3 class="thin text-center"><%=texts.SIGN_IN_TO_YOUR_ACCOUNT%></h3>
 				<% if (registerEnabled) { %><p class="text-center text-muted"><%=texts.IF_YOU_DONT_HAVE_ACCOUNT%>, <a href="/register"><%=texts.CREATE_AN_ACCOUNT%></a> <%=texts.NOW%>. </p><% } %>
-				<hr>
+				<% if(facebookLoginEnabled){ %>
+					<div class="center">
+					<a class="btn-lg btn-social btn-facebook" href="/auth/facebook">
+					    <span class="fa fa-facebook"></span> Sign in with Facebook
+					 </a>
+					</div>
+					<hr class="line">
+					<div class="circle">OR</div>
+				<% } %>
 				
 				<form action="/login" method="post">
 					<div class="top-margin">
@@ -37,11 +45,7 @@
 						</div>
 					</div>
 				</form>
-				<hr>
 				
-				OR
-				
-				<a href="/auth/facebook"><img src="/img/facebook-login-button.png" alt="Sign in with Facebook" height="50"></a>
 			</div>
 		</div>
 

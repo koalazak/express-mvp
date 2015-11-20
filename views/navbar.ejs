@@ -14,17 +14,18 @@
         <li>
         <form class="navbar-form navbar-left" role="search">
           <% if(!loggedUser) { %>
-	          <a href="/login" class="btn btn-default"><%=texts.SIGN_IN%></a> 
+	          <a href="/login" class="btn btn-sm btn-default"><%=texts.SIGN_IN%></a> 
 	          <% if (registerEnabled) { %>
-	          <a href="/register" class="btn btn-primary"><%=texts.SIGN_UP%></a>  
+	          <a href="/register" class="btn btn-sm btn-primary"><%=texts.SIGN_UP%></a>  
 	          <% } %> 
           <% }else{ %>
-            <a href="/logout" class="btn btn-default"><%=texts.LOGOUT%></a> 
+            <a href="/logout" class="btn btn-sm btn-default"><%=texts.LOGOUT%></a>
           <% } %>
-          <select class="btn btn-default" id="clang" onchange="location.href='/?clang='+$('#clang').val();">
+          <select class="btn btn-sm btn-default" id="clang" onchange="location.href='/?clang='+$('#clang').val();">
             <option value="en" <%=(lang=='en'?'selected="selected"':'')%> >English</option>
             <option value="es" <%=(lang=='es'?'selected="selected"':'')%> >Español</option>
           </select>
+
         </form>
         </li>
       </ul>

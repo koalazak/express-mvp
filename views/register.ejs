@@ -8,7 +8,16 @@
 			<div id="headsection" class="panel-body">
 				<h3 class="thin text-center"><%=texts.REGISTER_A_NEW_ACCOUNT%></h3>
 				<p class="text-center text-muted"><%=texts.ALREADY_HAVE_AN_ACCOUNT%> <a href="/login"><%=texts.LOGIN_HERE%>.</a></p>
-				<hr>
+				<% if(facebookLoginEnabled){ %>
+					<div class="center">
+					<a class="btn-lg btn-social btn-facebook" href="/auth/facebook">
+					    <span class="fa fa-facebook"></span> Sign up with Facebook
+					 </a>
+					</div>
+					<hr class="line">
+					<div class="circle">OR</div>
+				<% } %>
+
 
 				<form id="register" action="/register" method="post">
 					<div class="top-margin">

@@ -45,3 +45,34 @@ h1 {
 .footer1 a {
     color: #ccc;
 }
+
+hr.line {
+    position: relative;
+    top: 15px;
+    width: 100%;
+    background-color: #D4D4D4;
+    border-collapse: collapse;
+    margin-bottom: 0px;
+}
+
+div.center{ 
+	text-align:center;
+}
+
+div.circle {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    background-color: #FFF;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #D4D4D4;
+    text-align: center;
+    padding-right: 2px;
+    font-size: 12px;
+    line-height: 30px;
+    font-style: italic;
+    color: #D4D4D4;
+}

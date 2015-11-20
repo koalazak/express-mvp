@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var db=require("../app.js").db;
 var registerEnabled=require("../config.js").registerEnabled;
+var facebookLoginEnabled=require("../config.js").facebookLoginEnabled;
+
 var passport = require('passport');
 
 
@@ -61,17 +63,25 @@ router.post('/login',function(req, res, next) {
 
 router.get('/auth/facebook', function(req, res, next) {
 
-	passport.authenticate('facebook' , { scope: ['read_stream', 'publish_actions'] })(req, res, next);
+	if(facebookLoginEnabled){
+		passport.authenticate('facebook' , { scope: ['read_stream', 'publish_actions'] })(req, res, next);
+	}else{
+		next();
+	}
 
 });
 
 router.get('/auth/facebook/callback', function(req, res, next) {
 
- 	passport.authenticate('facebook', 
+	if(facebookLoginEnabled){
+ 		passport.authenticate('facebook', 
 					{   successRedirect: '/',
 						failureRedirect: '/login',
 						failureFlash: true
 					})(req, res, next);
+	}else{
+		next();
+	}
 
 });
 

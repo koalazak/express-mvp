@@ -10,6 +10,7 @@ function Users(){
 	var FACEBOOK_APP_ID=require("../config").FACEBOOK_APP_ID;
 	var FACEBOOK_APP_SECRET=require("../config").FACEBOOK_APP_SECRET;
 	var FACEBOOK_CALLBACK_DOMAIN=require("../config").FACEBOOK_CALLBACK_DOMAIN;
+	var facebookLoginEnabled= require("../config").facebookLoginEnabled;
 
 	var registerConfirmation=require("../config").registerConfirmation;
 	
@@ -184,23 +185,25 @@ function Users(){
 			  }
 			));
 			
-			// Facebook Strategy
-			passport.use(new FacebookStrategy({
-			    clientID: FACEBOOK_APP_ID,
-			    clientSecret: FACEBOOK_APP_SECRET,
-			    callbackURL: "http://"+FACEBOOK_CALLBACK_DOMAIN+"/auth/facebook/callback"
-			  },
-			  function(accessToken, refreshToken, profile, done) {
-			    _this.facebookFindOrCreate(profile , function(err, user) {
-			      if (err) { return done(null, false, err); }
-			      
-			      if (!user) {
-			        return done(null, false, { message: 'An error ocurred with Facebook Connect. Please try again or create a local account.' });
-			      }
-			      return done(null, user);
-			    });
-			  }
-			));
+			if(facebookLoginEnabled){
+				// Facebook Strategy
+				passport.use(new FacebookStrategy({
+				    clientID: FACEBOOK_APP_ID,
+				    clientSecret: FACEBOOK_APP_SECRET,
+				    callbackURL: "http://"+FACEBOOK_CALLBACK_DOMAIN+"/auth/facebook/callback"
+				  },
+				  function(accessToken, refreshToken, profile, done) {
+				    _this.facebookFindOrCreate(profile , function(err, user) {
+				      if (err) { return done(null, false, err); }
+				      
+				      if (!user) {
+				        return done(null, false, { message: 'An error ocurred with Facebook Connect. Please try again or create a local account.' });
+				      }
+				      return done(null, user);
+				    });
+				  }
+				));
+			}
 
 		}
 	}
