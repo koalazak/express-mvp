@@ -15,6 +15,7 @@ When I start a development of a "Minimum Viable Product" orientend to web using 
 - [x] Core e-mails
 - [x] Local Register
 - [x] Contact form
+- [ ] My account
 - [ ] Local Register Confirmation enable/disable
 - [ ] Forgot Password
 
