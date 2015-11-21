@@ -25,5 +25,24 @@ document.addEventListener("DOMContentLoaded", function(readyevent) {
 	  return;
 
 	});
+	
+	$("#contact-form").submit(function( event ) {
+		$("#sendcontact").prop('disabled', true);
+		$.post( '/contact', $('#contact-form').serialize(), function(data) {
+	        if("status" in data){
+	        	if(data.status=="ok"){
+	        		$('#contact-form').hide();
+	        		$('#contact-thanks').show();
+	        		
+	        	}
+	        	$("#sendcontact").prop('disabled', false);
+	        }
+	    },'json');
+
+	  event.preventDefault();
+	  return;
+
+	});
+
 
 });

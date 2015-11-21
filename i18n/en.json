@@ -30,5 +30,6 @@
 "REGISTER":"Register",
 "RESET_PASSWORD":"Reset password",
 "RESET_PASSWORD_TEXT":"A confirmation link will be sent to your email",
-"SEND_EMAIL":"Send Email"
+"SEND_EMAIL":"Send Email",
+"CONTACT_FORM_SEND_OK":"Thanks for contact us! We contacto you as soon as posible."
 }

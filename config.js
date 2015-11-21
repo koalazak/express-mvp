@@ -16,20 +16,21 @@ if(env){
 
 
 module.exports = {
-					db: db,
-					env: env,
-					sessionSecret: "changeme",
-					projectName: "MVP",
-					emailData: {
-						templatesPath: path.join(__dirname, 'views/emails'),
-						from: "MVP <mvp@example.com",
-						replyTo: "MVP <mvp@example.com",
-						proyectName: module.exports.projectName
-					},
-					registerEnabled: true,
-					registerConfirmation: true,
-					facebookLoginEnabled: false,
-					FACEBOOK_APP_ID : "",
-					FACEBOOK_APP_SECRET: "",
-					FACEBOOK_CALLBACK_DOMAIN: ""
-				};
+	db: db,
+	env: env,
+	sessionSecret: "changeme",
+	projectName: "MVP",
+	emailData: {
+		templatesPath: path.join(__dirname, 'views/emails'),
+		from: "MVP <mvp@example.com>",
+		replyTo: "MVP <mvp@example.com>",
+		proyectName: module.exports.projectName,
+		contactEmail: "MVP <mvp@example.com>"
+	},
+	registerEnabled: true,
+	registerConfirmation: true,
+	facebookLoginEnabled: false,
+	FACEBOOK_APP_ID : "",
+	FACEBOOK_APP_SECRET: "",
+	FACEBOOK_CALLBACK_DOMAIN: ""
+};

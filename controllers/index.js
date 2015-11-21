@@ -30,6 +30,42 @@ function Home(){
 			cb(pto);
 
 		},
+		
+		contact: function(params, cb){
+		
+			var pto = {
+				'response' : { status:"error", msg:"Unknown error." }
+			}
+			console.log(params);
+			
+			var name = paramParser.expect(params.bodyPost.name, "string","").trim();
+			var email = paramParser.expect(params.bodyPost.email, "string","").trim();
+			var phone = paramParser.expect(params.bodyPost.phone, "string","").trim();
+			var msg = paramParser.expect(params.bodyPost.message, "string","").trim();
+			var suscribed = paramParser.expect(params.bodyPost.suscribed, "boolean",0);
+			
+			if(!validator.isEmail(email)) email="";
+			if(email){
+			
+				Emails.sendContactFromWeb(mailConf.contactEmail, {
+												email: email, 
+												name: name,
+												phone: phone,
+												suscribed: suscribed,
+												msg: msg
+												 
+											});
+
+			    pto.response={status:"ok",msg:""};
+			    cb(pto);
+				
+			}else{
+				pto.response={status:"error",msg:"Enter a valid Email address."};
+				cb(pto);
+				
+			}
+
+		},
 
 		about: function(params, cb){
 		

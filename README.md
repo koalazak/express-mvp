@@ -14,10 +14,10 @@ When I start a development of a "Minimum Viable Product" orientend to web using 
 - [x] Geoip Language
 - [x] Core e-mails
 - [x] Local Register
+- [x] Contact form
 - [ ] Local Register Confirmation enable/disable
 - [ ] Forgot Password
-- [ ] Contact form
-- [ ] etc...
+
 
 So I decide to create a repo with all this things ready to go.
 

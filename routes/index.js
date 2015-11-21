@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/about', function(req, res, next) {
-  
+
 	indexCtrl.about({}, function(pto){
 		res.render('about', pto.viewOpts);
 	});
@@ -30,6 +30,16 @@ router.get('/contact', function(req, res, next) {
 
 	indexCtrl.contactForm({}, function(pto){
 		res.render('contact', pto.viewOpts);
+	});
+
+});
+
+router.post('/contact', function(req, res, next) {
+
+	var params={ bodyPost: req.body};
+
+	indexCtrl.contact(params, function(pto){
+		res.send(pto.response);
 	});
 
 });
