@@ -76,3 +76,9 @@ div.circle {
     font-style: italic;
     color: #D4D4D4;
 }
+
+select.clang {
+  -moz-appearance: none;
+   -webkit-appearance: none;
+   appearance: none;
+}

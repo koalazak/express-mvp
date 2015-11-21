@@ -18,13 +18,22 @@
 	          <% if (registerEnabled) { %>
 	          <a href="/register" class="btn btn-sm btn-primary"><%=texts.SIGN_UP%></a>  
 	          <% } %> 
+	         
+	         <select class="clang btn-sm btn-default" id="clang" onchange="location.href='/?clang='+$('#clang').val();">
+	            <option value="en" <%=(lang=='en'?'selected="selected"':'')%> >English</option>
+	            <option value="es" <%=(lang=='es'?'selected="selected"':'')%> >Español</option>
+	          </select>
+	           
           <% }else{ %>
-            <a href="/logout" class="btn btn-sm btn-default"><%=texts.LOGOUT%></a>
+			   <button class="btn-sm btn-default dropdown-toggle" type="button" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			    <%=loggedUser.displayName%>
+			    <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="user-options">
+			    <li><a href="/myaccount"><%=texts.MYACCOUNT%></a></li>
+			    <li><a href="/logout"><%=texts.LOGOUT%></a></li>
+			  </ul>
           <% } %>
-          <select class="btn btn-sm btn-default" id="clang" onchange="location.href='/?clang='+$('#clang').val();">
-            <option value="en" <%=(lang=='en'?'selected="selected"':'')%> >English</option>
-            <option value="es" <%=(lang=='es'?'selected="selected"':'')%> >Español</option>
-          </select>
 
         </form>
         </li>
