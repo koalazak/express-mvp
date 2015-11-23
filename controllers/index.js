@@ -36,13 +36,17 @@ function Home(){
 			var pto = {
 				'response' : { status:"error", msg:"Unknown error." }
 			}
-			console.log(params);
 			
 			var name = paramParser.expect(params.bodyPost.name, "string","").trim();
 			var email = paramParser.expect(params.bodyPost.email, "string","").trim();
 			var phone = paramParser.expect(params.bodyPost.phone, "string","").trim();
 			var msg = paramParser.expect(params.bodyPost.message, "string","").trim();
-			var suscribed = paramParser.expect(params.bodyPost.suscribed, "boolean",0);
+			var suscribed = paramParser.expect(params.bodyPost.suscribed, "string","");
+			if(suscribed=="on"){
+				suscribed="Yes";
+			} else{
+				suscribed="No";
+			}
 			
 			if(!validator.isEmail(email)) email="";
 			if(email){

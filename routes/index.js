@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db=require("../app.js").db;
 var registerEnabled=require("../config.js").registerEnabled;
+var localLoginEnabled=require("../config.js").localLoginEnabled;
 var facebookLoginEnabled=require("../config.js").facebookLoginEnabled;
 
 var passport = require('passport');
@@ -53,22 +54,31 @@ router.get('/legal', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-	indexCtrl.loginForm({}, function(pto){
-		pto.viewOpts.loginError=req.flash("error");
-		pto.viewOpts.loginusername=req.flash("loginusername");
-		res.render('login', pto.viewOpts);
-	});
+
+	if(localLoginEnabled){
+		indexCtrl.loginForm({}, function(pto){
+			pto.viewOpts.loginError=req.flash("error");
+			pto.viewOpts.loginusername=req.flash("loginusername");
+			res.render('login', pto.viewOpts);
+		});
+	}else{
+		next();
+	}
 
 });
 
 
 router.post('/login',function(req, res, next) {
   
-  req.flash("loginusername",req.body.login_username || "");
+  if(localLoginEnabled){
+	  req.flash("loginusername",req.body.login_username || "");
 
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })(req, res, next);
+	  passport.authenticate('local', { successRedirect: '/',
+	                                   failureRedirect: '/login',
+	                                   failureFlash: true })(req, res, next);
+  }else{
+		next();
+  }
 });
 
 router.get('/auth/facebook', function(req, res, next) {
@@ -130,11 +140,13 @@ router.post('/register', function(req, res, next) {
 });
 
 router.get('/recover-account', function(req, res, next) {
-  
-	indexCtrl.forgotForm({}, function(pto){
-		res.render('forgot', pto.viewOpts);
-	});
-
+	if(localLoginEnabled){
+		indexCtrl.forgotForm({}, function(pto){
+			res.render('forgot', pto.viewOpts);
+		});
+	}else{
+		next();
+	}
 });
 
                                      									

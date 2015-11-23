@@ -9,7 +9,9 @@
 		Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.
 		</p>
 		<% if(!loggedUser) { %>
-		   <a href="/login" class="btn btn-default"><%=texts.SIGN_IN%></a>  
+		   <% if (localLoginEnabled) { %>
+		   	<a href="/login" class="btn btn-default"><%=texts.SIGN_IN%></a>  
+		   <%}%>
 		   <% if (registerEnabled) { %>
 		   	<a href="/register" type="submit" class="btn btn-primary"><%=texts.SIGN_UP%></a>
 		   <%}%>

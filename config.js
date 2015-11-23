@@ -27,6 +27,7 @@ module.exports = {
 		proyectName: module.exports.projectName,
 		contactEmail: "MVP <mvp@example.com>"
 	},
+	localLoginEnabled: true,
 	registerEnabled: true,
 	registerConfirmation: true,
 	facebookLoginEnabled: false,

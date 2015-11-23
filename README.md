@@ -15,10 +15,11 @@ When I start a development of a "Minimum Viable Product" orientend to web using 
 - [x] Core e-mails
 - [x] Local Register
 - [x] Contact form
+- [x] enable/disable local login
 - [ ] My account
 - [ ] Local Register Confirmation enable/disable
 - [ ] Forgot Password
-- [ ] enable/disable local login
+
 
 
 So I decide to create a repo with all this things ready to go.

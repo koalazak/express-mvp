@@ -14,7 +14,9 @@
         <li>
         <form class="navbar-form navbar-left" role="search">
           <% if(!loggedUser) { %>
+            <% if (localLoginEnabled) { %>
 	          <a href="/login" class="btn btn-sm btn-default"><%=texts.SIGN_IN%></a> 
+            <% } %>
 	          <% if (registerEnabled) { %>
 	          <a href="/register" class="btn btn-sm btn-primary"><%=texts.SIGN_UP%></a>  
 	          <% } %> 
