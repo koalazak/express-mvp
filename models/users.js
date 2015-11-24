@@ -13,6 +13,8 @@ function Users(){
 	var facebookLoginEnabled= require("../config").facebookLoginEnabled;
 
 	var registerConfirmation=require("../config").registerConfirmation;
+
+	var ACTIVATION_EXPIRE=1000*60*60*24*7; // 7 days
 	
 	return {
 
@@ -32,7 +34,7 @@ function Users(){
 							provider:"local",
 							id:compatibleID,
 							enable: accEnable,
-							activationStatus: accEnable,
+							activationRequired: !accEnable,
 							activationHash:  activationHash,
 							activationStart: new Date(),
 							recoverHash: '',
@@ -60,7 +62,7 @@ function Users(){
 							provider:"facebook",
 							id: data.id,
 							enable: true,
-							activationStatus: null,
+							activationRequired: false,
 							activationHash:  null,
 							activationStart: null,
 							recoverHash: '',
@@ -113,6 +115,53 @@ function Users(){
 
 			});
 
+		},
+
+		checkActivationCode: function(user, code, cb){
+
+			var _this=this;
+			
+			db.users.findOne({"username": user, "provider": "local", }, function(e, fu){
+				if(e){
+					cb("ERROR_DB");
+				}else{
+					if(fu){
+						console.log(fu);
+						if(fu.activationHash === code && code.trim()!=""){
+							if(fu.enable===true || fu.activationRequired===false){
+								return cb("ERROR_ALREADY_ACTIVATED",fu);
+							}
+							var dateDiff=new Date() - fu.activationStart;
+							if(dateDiff > ACTIVATION_EXPIRE){
+								cb("ERROR_EXPIRED",fu);
+							}else{
+								cb(null,fu);
+							}
+
+						}else{
+							cb("ERROR_INVALID_LINK");
+						}
+					}else{
+						cb("ERROR_USER_NOT_FOUND");
+					}
+				}
+			});
+		},
+
+		genNewActivationHash: function(uID, email, cb){
+
+			var activationHash = crypto.createHash('sha256').update("69"+email+uuid.v4()).digest('hex');
+			db.users.update({id:uID},{$set:{activationHash:activationHash, activationStart: new Date()}}, function(err){
+				cb(activationHash);
+			});
+
+		},
+
+		activateAccount: function(uID, cb){
+			var cb=cb || function(){};
+			db.users.update({id:uID},{$set:{enable:true, activationRequired: false }}, function(err){
+				cb(err);
+			});
 		},
 		
 		facebookFindOrCreate: function (profile, cb){

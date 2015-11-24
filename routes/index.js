@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db=require("../app.js").db;
 var registerEnabled=require("../config.js").registerEnabled;
+var registerConfirmation=require("../config.js").registerConfirmation;
 var localLoginEnabled=require("../config.js").localLoginEnabled;
 var facebookLoginEnabled=require("../config.js").facebookLoginEnabled;
 
@@ -139,6 +140,26 @@ router.post('/register', function(req, res, next) {
 
 });
 
+router.get('/activation', function(req, res, next) {
+
+	if(registerConfirmation){
+		
+		var baseURL= req.protocol + '://' + req.get('host');
+		var params={ bodyGet: req.query, baseURL:baseURL};
+
+		indexCtrl.activation(params, function(pto){
+			pto.viewOpts.loginError=req.flash("error");
+			pto.viewOpts.loginusername=req.flash("loginusername");
+			pto.viewOpts.msgs=pto.msgs;
+			console.log(pto.msgs);
+			res.render('login', pto.viewOpts);
+		});
+	}else{
+		next();
+	}
+
+});
+
 router.get('/recover-account', function(req, res, next) {
 	if(localLoginEnabled){
 		indexCtrl.forgotForm({}, function(pto){
@@ -164,6 +185,7 @@ router.all('*', function(req,res,next){
       req.path === '/contact' ||
       req.path === '/about' ||
       req.path === '/recover-account' ||
+      req.path === '/activation' ||
       req.path === '/legal' ||
       req.path === '/register') {
     next();

@@ -21,14 +21,51 @@ function Home(){
 			cb(pto);
 		},
 
-		contactForm: function(params, cb){
-		
-			var pto = {
-				'viewOpts' : { title: 'Contact us' },
-				'action' : 'renderContact'
-			}
-			cb(pto);
+		activation: function(params, cb){
 
+			var pto = {
+				'viewOpts' : { title: 'Account activation' },
+				'msgs':[]
+			}
+
+			var username = paramParser.expect(params.bodyGet.user, "string","").trim();
+			var code = paramParser.expect(params.bodyGet.acode, "string","").trim();
+
+			userModel.checkActivationCode(username, code, function(err,udata){
+
+				if(err){
+					switch(err){
+						case 'ERROR_ALREADY_ACTIVATED':
+							var errorText="Your activation link is expired. Try recovering your password.";
+						break;
+						case 'ERROR_EXPIRED':
+							//Send email again
+							userModel.genNewActivationHash(udata.id, udata.username, function(newAcivationHash){
+
+							Emails.sendRegister(udata.emails[0].value, {
+														registerConfirmation: true, 
+														name: udata.displayName,
+														activationHash: newAcivationHash,
+														baseURL: params.baseURL,
+														account: udata.username 
+														});
+							});
+
+							var errorText="Your activation link is expired. Check your email to follow a new activation link.";
+						break;
+						default:
+							var errorText="Invalid activation link.";
+						break;
+					}
+					pto.msgs.push(msgs.error(errorText));
+
+				}else{
+					//updateDB
+					userModel.activateAccount(udata.id);
+					pto.msgs.push(msgs.ok("Activation successfull. Please login."));
+				}
+				cb(pto);
+			});
 		},
 		
 		contact: function(params, cb){
@@ -70,47 +107,7 @@ function Home(){
 			}
 
 		},
-
-		about: function(params, cb){
 		
-			var pto = {
-				'viewOpts' : { title: 'About us' },
-				'action' : 'renderAbout'
-			}
-			cb(pto);
-
-		},
-
-		legal: function(params, cb){
-		
-			var pto = {
-				'viewOpts' : { title: 'Terms and Conditions' },
-				'action' : 'renderLegal'
-			}
-			cb(pto);
-
-		},
-
-		loginForm: function(params, cb){
-		
-			var pto = {
-				'viewOpts' : { title: 'Sign in' },
-				'action' : 'renderLogin'
-			}
-			cb(pto);
-
-		},
-
-		registerForm: function(params, cb){
-		
-			var pto = {
-				'viewOpts' : { title: 'Registration' },
-				'action' : 'renderRegister'
-			}
-			cb(pto);
-
-		},
-
 		registerUser: function(params, cb){
 
 			var pto = {
@@ -203,8 +200,56 @@ function Home(){
 			}
 			cb(pto);
 
-		}
+		},
 
+		contactForm: function(params, cb){
+		
+			var pto = {
+				'viewOpts' : { title: 'Contact us' },
+				'action' : 'renderContact'
+			}
+			cb(pto);
+
+		},
+
+		about: function(params, cb){
+		
+			var pto = {
+				'viewOpts' : { title: 'About us' },
+				'action' : 'renderAbout'
+			}
+			cb(pto);
+
+		},
+
+		legal: function(params, cb){
+		
+			var pto = {
+				'viewOpts' : { title: 'Terms and Conditions' },
+				'action' : 'renderLegal'
+			}
+			cb(pto);
+
+		},
+
+		loginForm: function(params, cb){
+		
+			var pto = {
+				'viewOpts' : { title: 'Sign in' }
+			}
+			cb(pto);
+
+		},
+
+		registerForm: function(params, cb){
+		
+			var pto = {
+				'viewOpts' : { title: 'Registration' },
+				'action' : 'renderRegister'
+			}
+			cb(pto);
+
+		}
 		
 	}
 	

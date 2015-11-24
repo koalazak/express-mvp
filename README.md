@@ -17,7 +17,7 @@ So I decide to create a repo with all this things ready to go.
 - [x] Geoip Language
 - [x] Core e-mails lib
 - [x] Contact form
-- [ ] Local Register Confirmation enable/disable
+- [x] Local Register Confirmation enable/disable
 - [ ] Forgot Password
 - [ ] My account
 
