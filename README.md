@@ -1,26 +1,24 @@
-# express-skeleton
-When I start a development of a "Minimum Viable Product" orientend to web using node.js I always start doing the same things:
+# express-mvp
+When I start a development of a "Minimum Viable Product" orientend to web using node.js and express.js I always start doing the same things.
+So I decide to create a repo with all this things ready to go.
 
-- [x] Installing Express.js
-- [x] Add MongoDB query string
+- [x] Setup Express.js
 - [x] Structure directories Routes, Controllers, Views and Libs
+- [x] Add MongoDB query string
 - [x] Add Bootstrap, jquery, Angular, etc
 - [x] Install some security modules (helmet for Headers)
 - [x] Add a basic bootstrap template with header, footer, menubar, etc
+- [x] Local User Registration
 - [x] Log-in for local users with Passportjs
-- [x] enable/disable facebook login and register
-- [x] Log-in for facebook users with Passportjs
+- [x] Enable/disable local login
+- [x] Log-in/Register for facebook users with Passportjs
+- [x] Enable/disable facebook login/register
 - [x] i18n
 - [x] Geoip Language
-- [x] Core e-mails
-- [x] Local Register
+- [x] Core e-mails lib
 - [x] Contact form
-- [x] enable/disable local login
-- [ ] My account
 - [ ] Local Register Confirmation enable/disable
 - [ ] Forgot Password
-
-
-So I decide to create a repo with all this things ready to go.
+- [ ] My account
 
 (working in progress...)

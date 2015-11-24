@@ -1,6 +1,6 @@
 {
-  "name": "mvp",
-  "version": "0.0.2",
+  "name": "express-mvp",
+  "version": "0.0.9",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
