@@ -15,6 +15,7 @@ function Users(){
 	var registerConfirmation=require("../config").registerConfirmation;
 
 	var ACTIVATION_EXPIRE=1000*60*60*24*7; // 7 days
+	var RECOVER_EXPIRE=1000*60*60*3; // 3 hours
 	
 	return {
 
@@ -88,7 +89,7 @@ function Users(){
 			db.users.findOne({username: username, provider: "local"}, function(e, d){
 				
 				if(e){
-					 throw new Error('Error cheking user existence.')
+					 throw new Error(e)
 					 return;
 				}else{
 					cb(d);
@@ -126,13 +127,41 @@ function Users(){
 					cb("ERROR_DB");
 				}else{
 					if(fu){
-						console.log(fu);
 						if(fu.activationHash === code && code.trim()!=""){
 							if(fu.enable===true || fu.activationRequired===false){
 								return cb("ERROR_ALREADY_ACTIVATED",fu);
 							}
 							var dateDiff=new Date() - fu.activationStart;
 							if(dateDiff > ACTIVATION_EXPIRE){
+								cb("ERROR_EXPIRED",fu);
+							}else{
+								cb(null,fu);
+							}
+
+						}else{
+							cb("ERROR_INVALID_LINK");
+						}
+					}else{
+						cb("ERROR_USER_NOT_FOUND");
+					}
+				}
+			});
+		},
+		
+		checkRecoverCode: function(user, code, cb){
+
+			var _this=this;
+			
+			db.users.findOne({"username": user, "provider": "local", }, function(e, fu){
+				if(e){
+					cb("ERROR_DB");
+				}else{
+					if(fu){
+						//console.log(fu);
+						if(fu.recoverHash === code && code.trim()!="" && fu.enable===true){
+							
+							var dateDiff=new Date() - fu.recoverStart;
+							if(dateDiff > RECOVER_EXPIRE){
 								cb("ERROR_EXPIRED",fu);
 							}else{
 								cb(null,fu);
@@ -178,14 +207,13 @@ function Users(){
 		facebookFindOrCreate: function (profile, cb){
 		
 			var _this=this;
-			var errorText="An error ocurred with Facebook Connect.";
 			
 			if("id" in profile){
 				
 				db.users.findOne({"id": profile.id, "provider": "facebook"}, function(e, fu){
 				
 					if(e){
-						 cb(errorText, null);
+						 cb(e, null);
 						 return;
 					}else{
 						
@@ -193,11 +221,11 @@ function Users(){
 							//create user
 							_this.addFacebook(profile, function(cErr, uData){
 								if(cErr){
-									cb(errorText, null);
+									cb("ERROR_ADD_USER", null);
 								}else if(uData){
 									cb(null, uData);
 								}else{
-									cb(errorText, null);
+									cb("ERROR_UNKNOWN", null);
 								}
 								
 							});
@@ -210,7 +238,7 @@ function Users(){
 				})
 				
 			}else{
-				cb(errorText, null);
+				cb("ERROR_NO_DATA", null);
 			}
 
 		},
@@ -253,11 +281,12 @@ function Users(){
 				    callbackURL: "http://"+FACEBOOK_CALLBACK_DOMAIN+"/auth/facebook/callback"
 				  },
 				  function(accessToken, refreshToken, profile, done) {
+				  var errorMSG='An error ocurred with Facebook Connect. Please try again or create a local account.';
 				    _this.facebookFindOrCreate(profile , function(err, user) {
-				      if (err) { return done(null, false, err); }
+				      if (err) { return done(null, false, { message: errorMSG }); }
 				      
 				      if (!user) {
-				        return done(null, false, { message: 'An error ocurred with Facebook Connect. Please try again or create a local account.' });
+				        return done(null, false, { message: errorMSG });
 				      }
 				      return done(null, user);
 				    });

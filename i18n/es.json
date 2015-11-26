@@ -32,5 +32,7 @@
 "RESET_PASSWORD_TEXT":"Recibiras un link para cambiar tu contraseña",
 "SEND_EMAIL":"Enviar email",
 "CONTACT_FORM_SEND_OK":"Gracias por contactarnos! Te escribiremos a la brevedad.",
-"MYACCOUNT":"Mi cuenta"
+"MYACCOUNT":"Mi cuenta",
+"CHOOSE_PASSWORD":"Elige una nueva contraseña",
+"SAVE":"Guardar"
 }

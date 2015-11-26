@@ -186,6 +186,18 @@ router.post('/recover-account', function(req, res, next) {
 	}
 });
 
+router.get('/reset-password', function(req, res, next) {
+		
+		var baseURL= req.protocol + '://' + req.get('host');
+		var params={ bodyGet: req.query, baseURL:baseURL};
+
+		indexCtrl.resetPassword(params, function(pto){
+			pto.viewOpts.msgs=pto.msgs;
+			pto.viewOpts.codeOK=pto.codeOK;
+			res.render('reset-password', pto.viewOpts);
+		});
+});
+
                                      									
 
 function ensureAuthenticated(req, res, next) {
@@ -201,6 +213,7 @@ router.all('*', function(req,res,next){
       req.path === '/contact' ||
       req.path === '/about' ||
       req.path === '/recover-account' ||
+      req.path === '/reset-password' ||
       req.path === '/activation' ||
       req.path === '/legal' ||
       req.path === '/register') {

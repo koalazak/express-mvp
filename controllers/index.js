@@ -68,6 +68,38 @@ function Home(){
 			});
 		},
 		
+		resetPassword: function(params, cb){
+
+			var pto = {
+				'viewOpts' : { title: 'Reset your password' },
+				'codeOK': false,
+				'msgs':[]
+			}
+
+			var username = paramParser.expect(params.bodyGet.user, "string","").trim();
+			var code = paramParser.expect(params.bodyGet.rcode, "string","").trim();
+
+			userModel.checkRecoverCode(username, code, function(err,udata){
+
+				if(err){
+					switch(err){
+						case 'ERROR_EXPIRED':
+							var errorText="Your link is expired. Start the recovery process again.";
+						break;
+						default:
+							var errorText="Invalid recovery link.";
+						break;
+					}
+					console.log(err);
+					pto.msgs.push(msgs.error(errorText));
+				}else{
+					pto.codeOK=true;
+				}
+				cb(pto);
+			});
+		},
+
+		
 		contact: function(params, cb){
 		
 			var pto = {
