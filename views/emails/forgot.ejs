@@ -1,0 +1,14 @@
+Dear <strong><%=name%></strong>,<br><br>
+
+You recently initiated a password reset for your <%=proyectName%> account. To complete the process, click the link below.<br><br>
+
+<a href="<%=baseURL%>/reset-password/?user=<%=account%>&rcode=<%=recoverHash%>"><%=baseURL%>/reset-password/?user=<%=account%>&rcode=<%=recoverHash%></a>
+<br><br>
+
+This link will expire three hours after this email was sent.<br>
+If you didn’t make this request, it's likely that another user has entered your email address by mistake and your account is still secure. If you believe an unauthorized person has accessed your account, you can reset your password at 'My Account' menu.
+
+<br><br>
+Best regards,<br><br>
+
+<%=proyectName%> Team.

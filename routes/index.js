@@ -151,7 +151,6 @@ router.get('/activation', function(req, res, next) {
 			pto.viewOpts.loginError=req.flash("error");
 			pto.viewOpts.loginusername=req.flash("loginusername");
 			pto.viewOpts.msgs=pto.msgs;
-			console.log(pto.msgs);
 			res.render('login', pto.viewOpts);
 		});
 	}else{
@@ -160,9 +159,26 @@ router.get('/activation', function(req, res, next) {
 
 });
 
+
 router.get('/recover-account', function(req, res, next) {
 	if(localLoginEnabled){
 		indexCtrl.forgotForm({}, function(pto){
+			res.render('forgot', pto.viewOpts);
+		});
+	}else{
+		next();
+	}
+});
+
+router.post('/recover-account', function(req, res, next) {
+
+	if(localLoginEnabled){
+		var baseURL= req.protocol + '://' + req.get('host');
+		var params={ bodyPost: req.body, baseURL:baseURL};
+	
+		indexCtrl.forgot(params, function(pto){
+			pto.viewOpts.noform=true;
+			pto.viewOpts.msgs=pto.msgs;
 			res.render('forgot', pto.viewOpts);
 		});
 	}else{

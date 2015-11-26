@@ -10,26 +10,36 @@
 				<p class="text-center text-muted"><%=texts.RESET_PASSWORD_TEXT%></p>
 				<hr>
 				
-				<form action="/recover-account" method="post">
-					<div class="top-margin">
-						<label>Email <span class="text-danger">*</span></label>
-						<input type="text" name="forgot_email" id="forgot_email" class="form-control" required>
-					</div>
-
-					<hr>
-					<div class="row">
-						<div class="col-lg-8">
-							<b>Changed your mind? Back to <a href="/login">sign in</a> form</b>
+				 <% if(typeof msgs !="undefined" && msgs.length){ 
+			    	for(var i=0;i< msgs.length; i++){ %>
+					<h4 class="alert <%=msgs[i].css%>"><%=msgs[i].msg%></h4>
+					<%}%>
+			    <%}%>
+				
+				<% if(typeof noform=="undefined"){ %>
+					<form action="/recover-account" method="post">
+						<div class="top-margin">
+							<label>Email <span class="text-danger">*</span></label>
+							<input type="text" name="email" id="email" class="form-control" required>
 						</div>
-						<div class="col-lg-8">
-							<b>Don't have an account? <a href="/register">Register</a> one now</b>
+	
+						<hr>
+						<div class="row">
+							<div class="col-lg-8">
+								<b>Changed your mind? Back to <a href="/login">Sign in</a> form</b>
+							</div>
+							<div class="col-lg-8">
+								<b>Don't have an account? <a href="/register">Register</a> one now</b>
+							</div>
+	
+							<div class="col-lg-4 text-right">
+								<button class="btn btn-action btn-primary" type="submit"><%=texts.SEND_EMAIL%></button>
+							</div>
 						</div>
-
-						<div class="col-lg-4 text-right">
-							<button class="btn btn-action btn-primary" type="submit"><%=texts.SEND_EMAIL%></button>
-						</div>
-					</div>
-				</form>
+					</form>
+				
+				<%}%>
+				
 			</div>
 		</div>
 

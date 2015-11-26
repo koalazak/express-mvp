@@ -42,13 +42,13 @@ function Home(){
 							//Send email again
 							userModel.genNewActivationHash(udata.id, udata.username, function(newAcivationHash){
 
-							Emails.sendRegister(udata.emails[0].value, {
-														registerConfirmation: true, 
-														name: udata.displayName,
-														activationHash: newAcivationHash,
-														baseURL: params.baseURL,
-														account: udata.username 
-														});
+								Emails.sendRegister(udata.emails[0].value, {
+									registerConfirmation: true, 
+									name: udata.displayName,
+									activationHash: newAcivationHash,
+									baseURL: params.baseURL,
+									account: udata.username 
+								});
 							});
 
 							var errorText="Your activation link is expired. Check your email to follow a new activation link.";
@@ -89,13 +89,12 @@ function Home(){
 			if(email){
 			
 				Emails.sendContactFromWeb(mailConf.contactEmail, {
-												email: email, 
-												name: name,
-												phone: phone,
-												suscribed: suscribed,
-												msg: msg
-												 
-											});
+					email: email, 
+					name: name,
+					phone: phone,
+					suscribed: suscribed,
+					msg: msg
+				});
 
 			    pto.response={status:"ok",msg:""};
 			    cb(pto);
@@ -168,12 +167,12 @@ function Home(){
 							}else{
 
 								Emails.sendRegister(userEmail, {
-																registerConfirmation: registerConfirmation, 
-																name: userAlias,
-																activationHash: uData.activationHash,
-																baseURL: params.baseURL,
-																account: userEmail 
-																});
+									registerConfirmation: registerConfirmation, 
+									name: userAlias,
+									activationHash: uData.activationHash,
+									baseURL: params.baseURL,
+									account: userEmail 
+								});
 								
 								var okMSG="Account created successfully.";
 								if(registerConfirmation){
@@ -190,6 +189,57 @@ function Home(){
 				})
 			}
 
+		},
+		
+		forgot: function(params, cb){
+		
+			var pto = {
+				'viewOpts' : { title: 'Forgot your password?'},
+				'msgs' : []
+			}
+
+			pto.msgs.push(msgs.ok("A link with instructions to reset your password was sended to you email address. Check your email!"));
+			
+			var userEmail = paramParser.expect(params.bodyPost.email,"string","").trim();
+			if(!validator.isEmail(userEmail)) userEmail="";
+						
+			if(userEmail){
+				userModel.existLocal(userEmail, function(uData){
+					
+					if(uData){
+						if(uData.enable===true){
+							//send Email
+							userModel.genRecovery(uData.id, userEmail, function(err, recoverHash){
+								
+								if(!err){
+									
+									//send email
+									Emails.sendForgot(userEmail, {
+										name: uData.displayName,
+										recoverHash: recoverHash,
+										baseURL: params.baseURL,
+										account: uData.username 
+									});
+									cb(pto);
+									
+								}else{
+									cb(pto);
+								}								
+							});
+							
+						}else{
+							//always say all its ok.
+							cb(pto);
+						}						
+					}else{
+						//always say all its ok.
+						cb(pto);
+					}
+				});
+			}else{
+				//always say all its ok.
+				cb(pto);
+			}			
 		},
 
 		forgotForm: function(params, cb){

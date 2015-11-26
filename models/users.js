@@ -156,6 +156,17 @@ function Users(){
 			});
 
 		},
+		
+		genRecovery: function(uID, username, cb){
+			
+			var recoverHash = crypto.createHash('sha256').update("68"+username+uuid.v4()).digest('hex');
+			
+			db.users.update({id:uID},{$set:{recoverHash:recoverHash, recoverStart: new Date()}}, function(err){
+				cb(err, recoverHash);
+			});
+			
+			
+		},
 
 		activateAccount: function(uID, cb){
 			var cb=cb || function(){};
