@@ -23,3 +23,17 @@ So I decide to create a repo with all this things ready to go.
 - [ ] My account
 
 (working in progress...)
+
+## Instalation
+
+```bash
+$ git clone https://github.com/koalazak/express-mvp.git
+$ cd express-mvp
+$ npm install
+```
+
+## Run
+
+```bash
+$ ./start.sh
+```
