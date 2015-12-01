@@ -24,7 +24,7 @@ So I decide to create a repo with all this things ready to go.
 
 (working in progress...)
 
-## Instalation
+## Install
 
 ```bash
 $ git clone https://github.com/koalazak/express-mvp.git
