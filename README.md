@@ -22,8 +22,6 @@ So I decide to create a repo with all this things ready to go.
 - [ ] Newsletter suscription
 - [ ] My account
 
-(working in progress...)
-
 ## Install
 
 ```bash
@@ -37,3 +35,5 @@ $ npm install
 ```bash
 $ ./start.sh
 ```
+
+(working in progress...)
