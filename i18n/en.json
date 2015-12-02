@@ -34,5 +34,6 @@
 "CONTACT_FORM_SEND_OK":"Thanks for contact us! We contacto you as soon as posible.",
 "MYACCOUNT":"My account",
 "CHOOSE_PASSWORD":"Choose a new password",
-"SAVE":"Save"
+"SAVE":"Save",
+"CONFIRM": "Confirm"
 }

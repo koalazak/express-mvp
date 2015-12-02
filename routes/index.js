@@ -189,13 +189,33 @@ router.post('/recover-account', function(req, res, next) {
 router.get('/reset-password', function(req, res, next) {
 		
 		var baseURL= req.protocol + '://' + req.get('host');
-		var params={ bodyGet: req.query, baseURL:baseURL};
+		var params={ 
+					bodyGet: req.query, 
+					baseURL: baseURL,
+					session: req.session
+					};
 
-		indexCtrl.resetPassword(params, function(pto){
+		indexCtrl.resetPasswordForm(params, function(pto){
 			pto.viewOpts.msgs=pto.msgs;
-			pto.viewOpts.codeOK=pto.codeOK;
+			pto.viewOpts.showForm=pto.codeOK;
+						
 			res.render('reset-password', pto.viewOpts);
 		});
+});
+
+router.post('/reset-password', function(req, res, next) {
+		
+		var baseURL= req.protocol + '://' + req.get('host');
+		var params={ 
+					bodyPost: req.body, 
+					baseURL: baseURL,
+					session: req.session
+					};
+
+		indexCtrl.resetPassword(params, function(pto){
+			res.render('reset-password', pto.viewOpts);			
+		});
+		
 });
 
                                      									

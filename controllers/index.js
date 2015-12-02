@@ -68,7 +68,7 @@ function Home(){
 			});
 		},
 		
-		resetPassword: function(params, cb){
+		resetPasswordForm: function(params, cb){
 
 			var pto = {
 				'viewOpts' : { title: 'Reset your password' },
@@ -90,13 +90,84 @@ function Home(){
 							var errorText="Invalid recovery link.";
 						break;
 					}
-					console.log(err);
 					pto.msgs.push(msgs.error(errorText));
 				}else{
+					params.session.resetPasswordApproved = true;
+					params.session.resetPasswordUser= udata;
 					pto.codeOK=true;
 				}
 				cb(pto);
 			});
+		},
+		
+		checkPasswordPolicy: function(pass){
+			
+			var retMsgs = [];
+			
+			if(pass.length < 8){
+					retMsgs.push(msgs.error("Your passwords must have more than 8 characters."));	
+			}
+			
+			return retMsgs;
+			
+		},
+		
+		resetPassword: function(params, cb){
+			var _this=this;
+			
+			var pto = {
+				'viewOpts' : { title: 'Reset your password', msgs:[] }
+			}
+			
+			if("session" in params && "resetPasswordApproved" in params.session && params.session.resetPasswordApproved === true){
+				
+				var userData = params.session.resetPasswordUser;
+				var userPassword1 = paramParser.expect(params.bodyPost.userPassword1,"string","");
+				var userPassword2 = paramParser.expect(params.bodyPost.userPassword2,"string","");
+				
+				if(userPassword1 != userPassword2){
+					pto.viewOpts.msgs.push(msgs.error("The passwords must be equals."));
+					pto.viewOpts.showForm=true;
+				}
+				var passchecks=_this.checkPasswordPolicy(userPassword1)
+				if(passchecks){
+					pto.viewOpts.msgs=pto.viewOpts.msgs.concat(passchecks);
+					pto.viewOpts.showForm=true;
+				}
+				
+				if(userData.enable !== true){
+					pto.viewOpts.msgs.push(msgs.error("Unauthorized attempt"));
+					pto.viewOpts.showForm=false;
+				}
+				
+				if(pto.viewOpts.msgs.length){
+					return cb(pto);
+				}else{
+					
+					userModel.updatePassword(userData.id, userPassword1, function(err, pok){
+						
+						if(err){
+							pto.viewOpts.showForm=false;
+							pto.viewOpts.msgs.push(msgs.error("Error changing password."));
+						}else{
+							pto.viewOpts.msgs.push(msgs.ok("Your password was reset! Please login."));
+							params.session.resetPasswordApproved=false;
+							params.session.resetPasswordUser=null;
+							userModel.resetRecoveryAccountStatus();
+							pto.viewOpts.showForm=false;
+						}
+						return cb(pto);
+						
+					} );
+					
+				}
+				
+			}else{
+				pto.viewOpts.showForm=false;
+				pto.viewOpts.msgs.push(msgs.error("Unauthorized attempt"));
+				return cb(pto);
+			}
+			
 		},
 
 		
@@ -169,10 +240,9 @@ function Home(){
 				pto.action="FAIL";
 
 			}
-			if(userPassword1.length<8){
-				pto.msgs.push(msgs.error("Your passwords must have more than 3 characters."));
+			if(userPassword1.length < 8){
+				pto.msgs.push(msgs.error("Your passwords must have more than 8 characters."));
 				pto.action="FAIL";
-
 			}
 
 			if(pto.action=="FAIL"){

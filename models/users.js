@@ -186,6 +186,24 @@ function Users(){
 
 		},
 		
+		resetRecoveryAccountStatus: function (uID){
+			
+			db.users.update({id:uID},{$set:{recoverHash:'',recoverStart:null }}, function(err){
+				
+			});
+			
+		},
+		
+		updatePassword: function(uID, plainPass, cb){
+			
+			var encPass = crypto.createHash('sha256').update(plainPass).digest('hex');
+			
+			db.users.update({id:uID},{$set:{password:encPass}}, function(err){
+				cb(err, encPass);
+			});
+			
+		},
+		
 		genRecovery: function(uID, username, cb){
 			
 			var recoverHash = crypto.createHash('sha256').update("68"+username+uuid.v4()).digest('hex');
