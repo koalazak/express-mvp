@@ -99,6 +99,16 @@ function Users(){
 
 		},
 		
+		suscribe: function(email, name, status, cb){
+			
+			var cb = cb || function(){};
+			
+			db.suscriptions.update({email: email},{email:email, name:name, status:status, date: new Date()}, {upsert:true}, function(e, d){
+				cb(e,d);
+			})
+			
+		},
+		
 		auth: function (username, password, cb){
 			
 			var encPass = crypto.createHash('sha256').update(password).digest('hex');

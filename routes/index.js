@@ -46,6 +46,16 @@ router.post('/contact', function(req, res, next) {
 
 });
 
+router.post('/suscribe', function(req, res, next) {
+
+	var params={ bodyPost: req.body};
+
+	indexCtrl.suscribe(params, function(pto){
+		res.send(pto.response);
+	});
+
+});
+
 router.get('/legal', function(req, res, next) {
 
 	indexCtrl.legal({}, function(pto){
@@ -236,6 +246,7 @@ router.all('*', function(req,res,next){
       req.path === '/reset-password' ||
       req.path === '/activation' ||
       req.path === '/legal' ||
+      req.path === '/suscribe' ||
       req.path === '/register') {
     next();
   } else ensureAuthenticated(req,res,next);

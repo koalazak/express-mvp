@@ -5,13 +5,15 @@ var env = process.env.NODE_ENV !== 'production';
 
 if(env){
     //dev
-	var db = mongojs('mvp', ['users']);
+	var db = mongojs('mvp', ['users','suscriptions']);
 	db.users=db.collection('users');
+	db.suscriptions=db.collection('suscriptions');
 
 }else{
 	//production
-	var db = mongojs('mvp', ['users']);
+	var db = mongojs('mvp', ['users','suscriptions']);
 	db.users=db.collection('users');
+	db.suscriptions=db.collection('suscriptions');
 }
 
 

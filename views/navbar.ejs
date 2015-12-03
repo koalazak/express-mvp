@@ -21,7 +21,7 @@
 	          <a href="/register" class="btn btn-sm btn-primary"><%=texts.SIGN_UP%></a>  
 	          <% } %> 
 	         
-	         <select class="clang btn-sm btn-default" id="clang" onchange="location.href='/?clang='+$('#clang').val();">
+	         <select class="clang input-sm btn-default" id="clang" onchange="location.href='/?clang='+$('#clang').val();">
 	            <option value="en" <%=(lang=='en'?'selected="selected"':'')%> >English</option>
 	            <option value="es" <%=(lang=='es'?'selected="selected"':'')%> >Español</option>
 	          </select>

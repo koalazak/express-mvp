@@ -43,6 +43,24 @@ document.addEventListener("DOMContentLoaded", function(readyevent) {
 	  return;
 
 	});
+	
+	$("#suscribe-form").submit(function( event ) {
+		$("#sendsuscribe").prop('disabled', true);
+		$.post( '/suscribe', $('#suscribe-form').serialize(), function(data) {
+	        if("status" in data){
+	        	if(data.status=="ok"){
+	        		$('#suscribe-form').hide();
+	        		$('#suscribe-thanks').show();
+	        		
+	        	}
+	        	$("#sendsuscribe").prop('disabled', false);
+	        }
+	    },'json');
+
+	  event.preventDefault();
+	  return;
+
+	});
 
 
 });

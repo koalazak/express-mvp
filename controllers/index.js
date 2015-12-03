@@ -169,7 +169,28 @@ function Home(){
 			}
 			
 		},
-
+		
+		suscribe: function(params, cb){
+			
+			var pto = {
+				'response' : { status:"error", msg:"Unknown error." }
+			}
+			
+			var email = paramParser.expect(params.bodyPost.email, "string","").trim();
+			
+			if(!validator.isEmail(email)) email="";
+			if(email){
+			
+				userModel.suscribe(email, '', true);
+			    pto.response={status:"ok",msg:""};
+			    cb(pto);
+				
+			}else{
+				pto.response={status:"error",msg:"Enter a valid Email address."};
+				cb(pto);
+			}
+			
+		},
 		
 		contact: function(params, cb){
 		
@@ -198,6 +219,10 @@ function Home(){
 					suscribed: suscribed,
 					msg: msg
 				});
+				
+				var nlStatus=suscribed=="Yes"?true:false;
+				userModel.suscribe(email, name, nlStatus);
+				
 
 			    pto.response={status:"ok",msg:""};
 			    cb(pto);

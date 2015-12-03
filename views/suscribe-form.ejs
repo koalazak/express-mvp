@@ -1,0 +1,13 @@
+<form class="form-inline" name="suscribe-form" id="suscribe-form" action="/suscribe" method="post">
+<h3 class="widget-title"><%=texts.SUSCRIBE_NOW%></h3>
+
+		<div class="form-group">
+			<input class="form-control input-sm" type="email" name="email" placeholder="Your email here" required>
+		</div>
+		
+		<input id="sendsuscribe" class="btn btn-sm btn-action btn-primary" type="submit" value="<%=texts.KEEP_IN_TOUCH%>">
+
+</form>
+<div id="suscribe-thanks" style="display:none;" class="alert alert-success">
+<%=texts.SUSCRIPTION_THANKS%>					
+</div>
