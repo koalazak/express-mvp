@@ -19,7 +19,7 @@ So I decide to create a repo with all this things ready to go.
 - [x] Contact form
 - [x] Local Register Confirmation enable/disable
 - [x] Forgot Password
-- [ ] Newsletter suscription
+- [x] Newsletter suscription
 - [ ] My account
 
 ## Install
