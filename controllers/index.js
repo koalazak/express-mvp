@@ -153,7 +153,7 @@ function Home(){
 							pto.viewOpts.msgs.push(msgs.ok("Your password was reset! Please login."));
 							params.session.resetPasswordApproved=false;
 							params.session.resetPasswordUser=null;
-							userModel.resetRecoveryAccountStatus();
+							userModel.resetRecoveryAccountStatus(userData.id);
 							pto.viewOpts.showForm=false;
 						}
 						return cb(pto);

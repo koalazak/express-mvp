@@ -26,7 +26,7 @@ module.exports = {
 		templatesPath: path.join(__dirname, 'views/emails'),
 		from: "MVP <mvp@example.com>",
 		replyTo: "MVP <mvp@example.com>",
-		proyectName: module.exports.projectName,
+		proyectName: "MVP",
 		contactEmail: "MVP <mvp@example.com>"
 	},
 	localLoginEnabled: true,
