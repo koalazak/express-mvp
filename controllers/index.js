@@ -40,7 +40,7 @@ function Home(){
 						break;
 						case 'ERROR_EXPIRED':
 							//Send email again
-							userModel.genNewActivationHash(udata.id, udata.username, function(newAcivationHash){
+							userModel.genNewActivationHash(udata._id, udata.username, function(newAcivationHash){
 
 								Emails.sendRegister(udata.emails[0].value, {
 									registerConfirmation: true, 
@@ -61,7 +61,7 @@ function Home(){
 
 				}else{
 					//updateDB
-					userModel.activateAccount(udata.id);
+					userModel.activateAccount(udata._id);
 					pto.msgs.push(msgs.ok("Activation successfull. Please login."));
 				}
 				cb(pto);
@@ -144,7 +144,7 @@ function Home(){
 					return cb(pto);
 				}else{
 					
-					userModel.updatePassword(userData.id, userPassword1, function(err, pok){
+					userModel.updatePassword(userData._id, userPassword1, function(err, pok){
 						
 						if(err){
 							pto.viewOpts.showForm=false;
@@ -153,7 +153,7 @@ function Home(){
 							pto.viewOpts.msgs.push(msgs.ok("Your password was reset! Please login."));
 							params.session.resetPasswordApproved=false;
 							params.session.resetPasswordUser=null;
-							userModel.resetRecoveryAccountStatus(userData.id);
+							userModel.resetRecoveryAccountStatus(userData._id);
 							pto.viewOpts.showForm=false;
 						}
 						return cb(pto);
@@ -336,7 +336,7 @@ function Home(){
 					if(uData){
 						if(uData.enable===true){
 							//send Email
-							userModel.genRecovery(uData.id, userEmail, function(err, recoverHash){
+							userModel.genRecovery(uData._id, userEmail, function(err, recoverHash){
 								
 								if(!err){
 									

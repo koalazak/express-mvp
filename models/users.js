@@ -127,6 +127,15 @@ function Users(){
 			});
 
 		},
+		
+		findByFacebookId: function (id, cb){
+			db.users.findOne({id: id, provider: 'facebook'}, function(e, d){
+				
+				cb(e,d);
+
+			});
+
+		},
 
 		checkActivationCode: function(user, code, cb){
 
@@ -190,7 +199,7 @@ function Users(){
 		genNewActivationHash: function(uID, email, cb){
 
 			var activationHash = crypto.createHash('sha256').update("69"+email+uuid.v4()).digest('hex');
-			db.users.update({id:uID},{$set:{activationHash:activationHash, activationStart: new Date()}}, function(err){
+			db.users.update({_id:db.ObjectId(uID)},{$set:{activationHash:activationHash, activationStart: new Date()}}, function(err){
 				cb(activationHash);
 			});
 
@@ -198,7 +207,7 @@ function Users(){
 		
 		resetRecoveryAccountStatus: function (uID){
 			
-			db.users.update({id:uID},{$set:{recoverHash:'',recoverStart:null }}, function(err){
+			db.users.update({_id:db.ObjectId(uID)},{$set:{recoverHash:'',recoverStart:null }}, function(err){
 				
 			});
 			
@@ -208,7 +217,7 @@ function Users(){
 			
 			var encPass = crypto.createHash('sha256').update(plainPass).digest('hex');
 			
-			db.users.update({id:uID},{$set:{password:encPass}}, function(err){
+			db.users.update({_id:db.ObjectId(uID)},{$set:{password:encPass}}, function(err){
 				cb(err, encPass);
 			});
 			
@@ -218,7 +227,7 @@ function Users(){
 			
 			var recoverHash = crypto.createHash('sha256').update("68"+username+uuid.v4()).digest('hex');
 			
-			db.users.update({id:uID},{$set:{recoverHash:recoverHash, recoverStart: new Date()}}, function(err){
+			db.users.update({_id:db.ObjectId(uID)},{$set:{recoverHash:recoverHash, recoverStart: new Date()}}, function(err){
 				cb(err, recoverHash);
 			});
 			
@@ -227,7 +236,7 @@ function Users(){
 
 		activateAccount: function(uID, cb){
 			var cb=cb || function(){};
-			db.users.update({id:uID},{$set:{enable:true, activationRequired: false }}, function(err){
+			db.users.update({_id:db.ObjectId(uID)},{$set:{enable:true, activationRequired: false }}, function(err){
 				cb(err);
 			});
 		},
