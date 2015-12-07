@@ -24,8 +24,7 @@ function Home(){
 		activation: function(params, cb){
 
 			var pto = {
-				'viewOpts' : { title: 'Account activation' },
-				'msgs':[]
+				'viewOpts' : { title: 'Account activation', msgs: [] }
 			}
 
 			var username = paramParser.expect(params.bodyGet.user, "string","").trim();
@@ -57,12 +56,12 @@ function Home(){
 							var errorText="Invalid activation link.";
 						break;
 					}
-					pto.msgs.push(msgs.error(errorText));
+					pto.viewOpts.msgs.push(msgs.error(errorText));
 
 				}else{
 					//updateDB
 					userModel.activateAccount(udata._id);
-					pto.msgs.push(msgs.ok("Activation successfull. Please login."));
+					pto.viewOpts.msgs.push(msgs.ok("Activation successfull. Please login."));
 				}
 				cb(pto);
 			});
@@ -71,9 +70,7 @@ function Home(){
 		resetPasswordForm: function(params, cb){
 
 			var pto = {
-				'viewOpts' : { title: 'Reset your password' },
-				'codeOK': false,
-				'msgs':[]
+				'viewOpts' : { title: 'Reset your password', showForm: false, msgs: [] }
 			}
 
 			var username = paramParser.expect(params.bodyGet.user, "string","").trim();
@@ -90,11 +87,11 @@ function Home(){
 							var errorText="Invalid recovery link.";
 						break;
 					}
-					pto.msgs.push(msgs.error(errorText));
+					pto.viewOpts.msgs.push(msgs.error(errorText));
 				}else{
 					params.session.resetPasswordApproved = true;
 					params.session.resetPasswordUser= udata;
-					pto.codeOK=true;
+					pto.viewOpts.showForm=true;
 				}
 				cb(pto);
 			});
@@ -321,11 +318,10 @@ function Home(){
 		forgot: function(params, cb){
 		
 			var pto = {
-				'viewOpts' : { title: 'Forgot your password?'},
-				'msgs' : []
+				'viewOpts' : { title: 'Forgot your password?', msgs: [], noform: true}
 			}
 
-			pto.msgs.push(msgs.ok("A link with instructions to reset your password was sended to you email address. Check your email!"));
+			pto.viewOpts.msgs.push(msgs.ok("A link with instructions to reset your password was sended to you email address. Check your email!"));
 			
 			var userEmail = paramParser.expect(params.bodyPost.email,"string","").trim();
 			if(!validator.isEmail(userEmail)) userEmail="";

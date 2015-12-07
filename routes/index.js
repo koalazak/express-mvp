@@ -160,7 +160,6 @@ router.get('/activation', function(req, res, next) {
 		indexCtrl.activation(params, function(pto){
 			pto.viewOpts.loginError=req.flash("error");
 			pto.viewOpts.loginusername=req.flash("loginusername");
-			pto.viewOpts.msgs=pto.msgs;
 			res.render('login', pto.viewOpts);
 		});
 	}else{
@@ -187,8 +186,6 @@ router.post('/recover-account', function(req, res, next) {
 		var params={ bodyPost: req.body, baseURL:baseURL};
 	
 		indexCtrl.forgot(params, function(pto){
-			pto.viewOpts.noform=true;
-			pto.viewOpts.msgs=pto.msgs;
 			res.render('forgot', pto.viewOpts);
 		});
 	}else{
@@ -205,10 +202,7 @@ router.get('/reset-password', function(req, res, next) {
 					session: req.session
 					};
 
-		indexCtrl.resetPasswordForm(params, function(pto){
-			pto.viewOpts.msgs=pto.msgs;
-			pto.viewOpts.showForm=pto.codeOK;
-						
+		indexCtrl.resetPasswordForm(params, function(pto){						
 			res.render('reset-password', pto.viewOpts);
 		});
 });
