@@ -37,4 +37,4 @@ $ npm install
 $ ./start.sh
 ```
 
-(working in progress...)
+(work in progress...)
