@@ -23,7 +23,7 @@ So I decide to create a repo with all this things ready to go.
 - [x] My account
 - [ ] Update profile
 - [ ] Account settings
-- [ ] Email Preferences
+- [ ] Email preferences
 
 ## Install
 
