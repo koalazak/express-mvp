@@ -20,6 +20,7 @@ So I decide to create a repo with all this things ready to go.
 - [x] Local Register Confirmation enable/disable
 - [x] Forgot Password
 - [x] Newsletter suscription
+- [x] My account menu
 - [ ] Update profile
 - [ ] Account settings
 - [ ] Email preferences
