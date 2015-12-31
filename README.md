@@ -21,7 +21,7 @@ So I decide to create a repo with all this things ready to go.
 - [x] Forgot Password
 - [x] Newsletter suscription
 - [x] My account menu
-- [ ] Update profile
+- [ ] Update profile, picture, name, etc.
 - [ ] Account settings
 - [ ] Email preferences
 
