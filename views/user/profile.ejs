@@ -5,11 +5,63 @@
 	<div class="row">
 	<br>
 		<div class="col-md-2">
+			<%  var menu = "profile"; %>
+			
 			<% include menu.ejs %>
 		</div>
 		<div class="col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading"><h7>Profile</h7></div>
+				<div class="panel-heading"><h3 class="panel-title">Profile</h3></div>
+				
+				<div class="container-fluid row">
+					<form class="col-xs-6">
+					<div class="form-group">
+					    <label for="user_pciture">Profile Picture</label>
+					    <div class="row">
+						    <div class="col-md-4">
+						    	<img src="http://placehold.it/120x120" alt="" class="img-rounded">
+						    </div>
+						    <div class="col-md-8">
+						   
+						        <span class="btn-file btn btn-default">
+							    Upload new picture <input type="file" id="user_pciture">
+							    </span>
+							    <p class="help-block">You can also drag and drop a picture from your computer.</p>
+							    
+						    </div>
+					    </div>
+					   
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="user_display_name">Display Name</label>
+					    <input type="text" class="form-control" id="user_display_name" placeholder="">
+					  </div>
+					  
+					   <div class="form-group">
+					    <label for="user_fname">First Name</label>
+					    <input type="text" class="form-control" id="user_fname" placeholder="">
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="user_lname">Last Name</label>
+					    <input type="text" class="form-control" id="user_lname" placeholder="">
+					  </div>
+					  
+					   <div class="form-group">
+					    <label for="user_gender">Gender</label>
+					    <select class="form-control" id="user_gender">
+						    <option value="">Not specified</option>
+						    <option value="">Male</option>
+							<option value="">Female</option>
+					    </select>
+					  </div>
+					 
+					  <div class="form-group">
+					  <button type="submit" class="btn btn-success">Submit</button>
+					  </div>
+					</form>
+				</div>
 
 			</div>
 		</div>

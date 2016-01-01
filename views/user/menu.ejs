@@ -1,8 +1,10 @@
 <div class="panel panel-default">
-	<div class="panel-heading"><h7>Personal settings</h7></div>
-	<ul class="nav nav-pills nav-stacked list-group">
-	  <li role="presentation" class="active"><a href="/my-account/profile">Profile</a></li>
-	  <li role="presentation"><a href="/my-account/settings">Account settings</a></li>
-	  <li role="presentation"><a href="/my-account/emails">Email preferences</a></li>
-	</ul>
+	<div class="panel-heading"><h3 class="panel-title">Personal settings</h3></div>
+	
+	<div class="list-group">
+	 <a class="list-group-item<%- menu == 'profile' ? ' active' : ''%>" href="/my-account/profile">Profile</a>
+	 <a class="list-group-item<%- menu == 'settings' ? ' active' : ''%>" href="/my-account/settings">Account settings</a>
+	 <a class="list-group-item<%- menu == 'emails' ? ' active' : ''%>" href="/my-account/emails">Email preferences</a>
+	</div>
+	
 </div>
