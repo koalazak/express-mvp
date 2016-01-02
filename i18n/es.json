@@ -38,5 +38,18 @@
 "CONFIRM": "Confirmar",
 "SUSCRIBE_NOW": "Noticias nuestras?",
 "KEEP_IN_TOUCH":"Suscribirme!",
-"SUSCRIPTION_THANKS": "Gracias! Pronto escucharas sobre nosotros."
+"SUSCRIPTION_THANKS": "Gracias! Pronto escucharas sobre nosotros.",
+"PERSONAL_SETTINGS": "Configuracion",
+"PROFILE": "Perfil",
+"ACCOUNT_SETTINGS": "Cuenta",
+"EMAIL_PREFERENCES": "E-mails",
+"PROFILE_PICTURE": "Imagen de perfil",
+"UPLOAD_NEW_PICTURE": "Subir nueva foto",
+"YOU_CAN_ALSO_DRAG": "Tambien puedes arrastrar una foto desde tu computadora aquí.",
+"DISPLAY_NAME": "Nombre para mostrar",
+"LAST_NAME":"Apellido",
+"GENDER": "Género",
+"NOT_SPECIFIED": "No quiero decirlo",
+"MALE": "Masculino",
+"FEMALE": "Femenino"
 }

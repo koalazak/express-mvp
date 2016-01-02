@@ -38,5 +38,18 @@
 "CONFIRM": "Confirm",
 "SUSCRIBE_NOW": "Suscribe to get updates!",
 "KEEP_IN_TOUCH":"Keep in touch!",
-"SUSCRIPTION_THANKS": "Thanks you! Your subscription has been confirmed. You've been added to our list and will hear from us soon."
+"SUSCRIPTION_THANKS": "Thanks you! Your subscription has been confirmed. You've been added to our list and will hear from us soon.",
+"PERSONAL_SETTINGS": "Personal settings",
+"PROFILE": "Profile",
+"ACCOUNT_SETTINGS": "Account settings",
+"EMAIL_PREFERENCES": "Email preferences",
+"PROFILE_PICTURE": "Profile Picture",
+"UPLOAD_NEW_PICTURE": "Upload new picture",
+"YOU_CAN_ALSO_DRAG": "You can also drag and drop a picture from your computer.",
+"DISPLAY_NAME": "Display Name",
+"LAST_NAME":"Last name",
+"GENDER": "Gender",
+"NOT_SPECIFIED": "Not specified",
+"MALE": "Male",
+"FEMALE": "Female"
 }
