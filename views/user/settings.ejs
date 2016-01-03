@@ -5,17 +5,56 @@
 	<div class="row">
 	<br>
 		<div class="col-md-2">
-			<% 
-			var menu = "settings";
-			%>
+			<%  var menu = "settings"; %>
 			
 			<% include menu.ejs %>
 		</div>
 		<div class="col-md-10">
 			<div class="panel panel-default">
-				<div class="panel-heading"><h3 class="panel-title"><%=texts.ACCOUNT_SETTINGS%></h3></div>
+				<div class="panel-heading"><h3 class="panel-title">Change password</h3></div>
+				
+				<div class="container-fluid row">
+					<form class="col-xs-6">
 
+					  <div class="form-group">
+					    <label for="user_old_pass">Old Password</label>
+					    <input type="password" class="form-control" id="user_old_pass" placeholder="">
+					  </div>
+					  
+					   <div class="form-group">
+					    <label for="user_password1">New password</label>
+					    <input type="password" class="form-control" id="user_password1" placeholder="">
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="user_password2">Confirm new password</label>
+					    <input type="password" class="form-control" id="user_password2" placeholder="">
+					  </div>
+					  
+					  <div class="form-group">
+					  <button type="submit" class="btn btn-success">Update password</button> <a href="/recover-account"><%=texts.FORGOT_PASSWORD%></a>
+					  </div>
+					</form>
+				</div>
 			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading"><h3 class="panel-title">Delete account</h3></div>
+				
+				<div class="container-fluid row">
+					<form class="col-xs-6">
+						<div class="form-group">
+							<p>Once you delete your account, there is no going back. Please be certain.</p>
+						</div>
+								 
+						<div class="form-group">
+							<button type="submit" class="btn btn-danger">Delete your account</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			
 		</div>
 	</div>
 </div>

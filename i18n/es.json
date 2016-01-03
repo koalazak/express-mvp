@@ -42,7 +42,7 @@
 "PERSONAL_SETTINGS": "Configuracion",
 "PROFILE": "Perfil",
 "ACCOUNT_SETTINGS": "Cuenta",
-"EMAIL_PREFERENCES": "E-mails",
+"EMAIL_PREFERENCES": "Preferencias de e-mail",
 "PROFILE_PICTURE": "Imagen de perfil",
 "UPLOAD_NEW_PICTURE": "Subir nueva foto",
 "YOU_CAN_ALSO_DRAG": "Tambien puedes arrastrar una foto desde tu computadora aquí.",
@@ -52,4 +52,5 @@
 "NOT_SPECIFIED": "No quiero decirlo",
 "MALE": "Masculino",
 "FEMALE": "Femenino"
+"EMAILS": "E-mails"
 }
