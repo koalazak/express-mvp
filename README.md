@@ -17,12 +17,12 @@ So I decide to create a repo with all this things ready to go.
 - [x] Geoip Language
 - [x] Core e-mails lib
 - [x] Contact form
-- [x] Local Register Confirmation enable/disable
+- [x] Local User Register Confirmation enable/disable
 - [x] Forgot Password
 - [x] Newsletter suscription
 - [x] My account menu
 - [ ] Update profile, picture, name, etc.
-- [ ] Account settings
+- [ ] Account settings (chage password and delete account)
 - [ ] Email preferences
 
 ## Install
