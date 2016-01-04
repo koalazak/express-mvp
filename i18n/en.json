@@ -52,5 +52,7 @@
 "NOT_SPECIFIED": "Not specified",
 "MALE": "Male",
 "FEMALE": "Female",
-"EMAILS": "Emails"
+"EMAILS": "Emails",
+"I_WISH_TO_RECEIVE_NEWSLETTERS": "I wish to receive newsletters",
+"NEWSLETTER_EXPLAIN": "We'll occasionally contact you with the latest news."
 }
