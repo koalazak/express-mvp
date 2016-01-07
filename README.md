@@ -1,4 +1,4 @@
-# express-mvp
+# Express Minimum Viable Product
 When I start a development of a "Minimum Viable Product" orientend to web using node.js and express.js I always start doing the same things.
 So I decide to create a repo with all this things ready to go.
 
